@@ -124,9 +124,7 @@
       })
 
     function playVideo(numb){
-      if(videoLoaded){
-        id('backgroundVideo' + numb).currentTime = 4.5
-      }
+      id('backgroundVideo' + numb).currentTime = 4.5
       id('backgroundVideo' + numb).play()
       id('backgroundVideo' + numb).playbackRate = 0.6;
       if(id('backgroundVideo2').style.display == 'none'){
