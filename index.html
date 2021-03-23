@@ -1,5 +1,5 @@
-<link href='https://suburl.at/resources/master.css' rel='stylesheet' type='text/css'>
-<script src='https://suburl.at/resources/master.js'></script>
+<link href='/resources/master.css' rel='stylesheet' type='text/css'>
+<script src='/resources/master.js'></script>
 <div style='display:block; position:absolute; background:#202020; overflow-X:hidden; overflow-Y:auto;'>
   <video id='backgroundVideo1' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
   <video id='backgroundVideo2' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
@@ -64,9 +64,9 @@
       resizeResponsiveElements()
     })
       if(document.body.offsetWidth > document.body.offsetHeight){
-        id('backgroundVideo1').src = '//suburl.at/resources/vid.mp4'
+        id('backgroundVideo1').src = '/resources/vid.mp4'
       }else{
-        id('backgroundVideo1').src = '//suburl.at/resources/vertical.mp4'
+        id('backgroundVideo1').src = '/resources/vertical.mp4'
       }
       videoLoaded = false
       id('backgroundVideo1').addEventListener('canplaythrough', function(){
