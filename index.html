@@ -128,6 +128,7 @@
             clearInterval(videoLaunchInterval1)
             clearInterval(videoLaunchInterval2)
             clearTimeout(videoLaunchTimeout)
+            elementFadeOut('backgroundVideo2')
           }catch{}
           id('backgroundVideo1').src = loadedSrc
           id('backgroundVideo1').currentTime = 0
