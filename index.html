@@ -14,7 +14,7 @@
 <link href='/resources/master.css' rel='stylesheet' type='text/css'>
 <script src='/resources/master.js'></script>
 <div style='display:block; position:absolute; background:#202020; color:white; overflow-X:hidden; overflow-Y:auto;'>
-  <video id='loadVideo' class='full' R='min-height:500px;' style='display:none;'></video>
+  <video id='loadVideo' style='display:none;'></video>
   <video id='backgroundVideo1' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
   <video id='backgroundVideo2' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
   <div R='min-height:500px;'>
@@ -80,8 +80,8 @@
       resizeVideo()
     })
     function resizeVideo(){
-      var vidHeight = id('loadVideo').offsetHeight
-      if(id('loadVideo').offsetHeight / 3 * 2.5 < id('loadVideo').offsetWidth){
+      var vidHeight = id('backgroundVideo1').offsetHeight
+      if(id('backgroundVideo1').offsetHeight / 3 * 2.5 < id('backgroundVideo1').offsetWidth){
         if(vidHeight < 600 && id('loadVideo').src.indexOf('horizontal480p') == -1){
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
         }else if(600 <= vidHeight && vidHeight < 720 && id('loadVideo').src.indexOf('horizontal600p') == -1){
