@@ -79,32 +79,42 @@
       resizeResponsiveElements()
       resizeVideo()
     })
+    
+    videoLoaded = false
+    videoLevel = 0
     function resizeVideo(){
       var vidHeight = id('backgroundVideo1').offsetHeight
       if(id('backgroundVideo1').offsetHeight / 3 * 2.5 < id('backgroundVideo1').offsetWidth){
-        if(vidHeight < 600 && id('loadVideo').src.indexOf('horizontal480p') == -1){
+        if(vidHeight < 600 && videoLevel < 1){
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
-        }else if(600 <= vidHeight && vidHeight < 720 && id('loadVideo').src.indexOf('horizontal600p') == -1){
+          videoLevel = 1
+        }else if(600 <= vidHeight && vidHeight < 720 && videoLevel < 3){
           id('loadVideo').src = '/resources/videos/horizontal600p.mp4'
-        }else if(720 <= vidHeight && vidHeight < 900 && id('loadVideo').src.indexOf('horizontal720p') == -1){
+          videoLevel = 3
+        }else if(720 <= vidHeight && vidHeight < 900 && videoLevel < 5){
           id('loadVideo').src = '/resources/videos/horizontal720p.mp4'
-        }else if(900 <= vidHeight && id('loadVideo').src.indexOf('horizontalMax') == -1){
+          videoLevel = 5
+        }else if(900 <= vidHeight && videoLevel < 7){
           id('loadVideo').src = '/resources/videos/horizontalMax.mp4'
+          videoLevel = 7
         }
       }else{
-        if(vidHeight < 600 && id('loadVideo').src.indexOf('vertical480p') == -1){
+        if(vidHeight < 600 && videoLevel < 2){
           id('loadVideo').src = '/resources/videos/vertical480p.mp4'
-        }else if(600 <= vidHeight && vidHeight < 720 && id('loadVideo').src.indexOf('vertical600p') == -1){
+          videoLevel = 2
+        }else if(600 <= vidHeight && vidHeight < 720 && videoLevel < 4){
           id('loadVideo').src = '/resources/videos/vertical600p.mp4'
-        }else if(720 <= vidHeight && vidHeight < 900 && id('loadVideo').src.indexOf('vertical720p') == -1){
+          videoLevel = 4
+        }else if(720 <= vidHeight && vidHeight < 900 && videoLevel < 6){
           id('loadVideo').src = '/resources/videos/vertical720p.mp4'
-        }else if(900 <= vidHeight && id('loadVideo').src.indexOf('verticalMax') == -1){
+          videoLevel = 6
+        }else if(900 <= vidHeight && videoLevel < 8){
           id('loadVideo').src = '/resources/videos/verticalMax.mp4'
+          videoLevel = 8
         }
       }
     }
     
-      videoLoaded = false
       id('loadVideo').addEventListener('canplaythrough', function(){
         loadedSrc = id('loadVideo').src
         if(videoLoaded == false){
