@@ -76,10 +76,26 @@
     window.addEventListener('resize', function(){
       resizeResponsiveElements()
     })
-      if(document.body.offsetWidth > document.body.offsetHeight){
-        id('backgroundVideo1').src = '/resources/vid.mp4'
+      if(document.body.offsetWidth < document.body.offsetHeight){
+        if(document.body.offsetHeight<480){
+          id('backgroundVideo1').src = '/resources/videos/horizontal480p.mp4'
+        }else if(document.body.offsetHeight<600){
+          id('backgroundVideo1').src = '/resources/videos/horizontal600p.mp4'
+        }else if(document.body.offsetHeight<720){
+          id('backgroundVideo1').src = '/resources/videos/horizontal720p.mp4'
+        }else{
+          id('backgroundVideo1').src = '/resources/videos/horizontalMax.mp4'
+        }
       }else{
-        id('backgroundVideo1').src = '/resources/vertical.mp4'
+        if(document.body.offsetWidth<480){
+          id('backgroundVideo1').src = '/resources/videos/vertical480p.mp4'
+        }else if(document.body.offsetWidth<600){
+          id('backgroundVideo1').src = '/resources/videos/vertical600p.mp4'
+        }else if(document.body.offsetWidth<720){
+          id('backgroundVideo1').src = '/resources/videos/vertical720p.mp4'
+        }else{
+          id('backgroundVideo1').src = '/resources/videos/verticalMax.mp4'
+        }
       }
       videoLoaded = false
       id('backgroundVideo1').addEventListener('canplaythrough', function(){
