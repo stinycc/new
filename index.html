@@ -104,8 +104,8 @@
     }
       videoLoaded = false
       id('loadVideo').addEventListener('canplaythrough', function(){
-        id('backgroundVideo1').src = id('loadVideo')
-        id('backgroundVideo2').src = id('loadVideo')
+        id('backgroundVideo1').src = id('loadVideo').src
+        id('backgroundVideo2').src = id('loadVideo').src
         if(videoLoaded == false){
           videoLoaded = true
           elementFadeIn('backgroundVideo1')
