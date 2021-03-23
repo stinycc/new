@@ -80,7 +80,7 @@
       resizeVideo()
     })
     function resizeVideo(){
-      if(document.body.offsetWidth < document.body.offsetHeight){
+      if(document.body.offsetWidth > document.body.offsetHeight){
         if(document.body.offsetHeight<480){
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
         }else if(document.body.offsetHeight<600){
