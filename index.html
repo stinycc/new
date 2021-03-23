@@ -74,8 +74,12 @@
   })
   window.addEventListener('DOMContentLoaded', function(){
     resizeResponsiveElements()
+    resizeVideo()
     window.addEventListener('resize', function(){
       resizeResponsiveElements()
+      resizeVideo()
+    })
+    function resizeVideo(){
       if(document.body.offsetWidth < document.body.offsetHeight){
         if(document.body.offsetHeight<480){
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
@@ -97,13 +101,16 @@
           id('loadVideo').src = '/resources/videos/verticalMax.mp4'
         }
       }
-    })
+    }
       videoLoaded = false
       id('loadVideo').addEventListener('canplaythrough', function(){
         if(videoLoaded == false){
           videoLoaded = true
           elementFadeIn('backgroundVideo1')
-          playVideo(1)
+          id('backgroundVideo1').src = id('loadVideo').src
+          id('backgroundVideo1').currentTime = 0
+          id('backgroundVideo1').play()
+          id('backgroundVideo1').playbackRate = 0.6;
           setInterval(function(){
             playVideo(1)
           },22000)
