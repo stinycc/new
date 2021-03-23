@@ -75,36 +75,34 @@
     resizeResponsiveElements()
     window.addEventListener('resize', function(){
       resizeResponsiveElements()
-    })
       if(document.body.offsetWidth < document.body.offsetHeight){
         if(document.body.offsetHeight<480){
-          id('backgroundVideo1').src = '/resources/videos/horizontal480p.mp4'
+          id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
         }else if(document.body.offsetHeight<600){
-          id('backgroundVideo1').src = '/resources/videos/horizontal600p.mp4'
+          id('loadVideo').src = '/resources/videos/horizontal600p.mp4'
         }else if(document.body.offsetHeight<720){
-          id('backgroundVideo1').src = '/resources/videos/horizontal720p.mp4'
+          id('loadVideo').src = '/resources/videos/horizontal720p.mp4'
         }else{
-          id('backgroundVideo1').src = '/resources/videos/horizontalMax.mp4'
+          id('loadVideo').src = '/resources/videos/horizontalMax.mp4'
         }
       }else{
         if(document.body.offsetWidth<480){
-          id('backgroundVideo1').src = '/resources/videos/vertical480p.mp4'
+          id('loadVideo').src = '/resources/videos/vertical480p.mp4'
         }else if(document.body.offsetWidth<600){
-          id('backgroundVideo1').src = '/resources/videos/vertical600p.mp4'
+          id('loadVideo').src = '/resources/videos/vertical600p.mp4'
         }else if(document.body.offsetWidth<720){
-          id('backgroundVideo1').src = '/resources/videos/vertical720p.mp4'
+          id('loadVideo').src = '/resources/videos/vertical720p.mp4'
         }else{
-          id('backgroundVideo1').src = '/resources/videos/verticalMax.mp4'
+          id('loadVideo').src = '/resources/videos/verticalMax.mp4'
         }
       }
+    })
       videoLoaded = false
-      id('backgroundVideo1').addEventListener('canplaythrough', function(){
+      id('loadVideo').addEventListener('canplaythrough', function(){
         if(videoLoaded == false){
           videoLoaded = true
-          id('backgroundVideo2').src = id('backgroundVideo1').src
           elementFadeIn('backgroundVideo1')
-          id('backgroundVideo1').play()
-          id('backgroundVideo1').playbackRate = 0.6;
+          playVideo(1)
           setInterval(function(){
             playVideo(1)
           },22000)
@@ -118,6 +116,7 @@
       })
 
     function playVideo(numb){
+      id('backgroundVideo' + numb).src = id('loadVideo').src
       id('backgroundVideo' + numb).currentTime = 4.5
       id('backgroundVideo' + numb).play()
       id('backgroundVideo' + numb).playbackRate = 0.6;
