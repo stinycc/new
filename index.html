@@ -85,7 +85,6 @@
 
     function resizeVideo(){
       var vidHeight = document.body.offsetHeight
-      alert(vidHeight)
       if(document.body.offsetHeight / 3 * 2.5 < document.body.offsetWidth || document.body.offsetHeight < 500){
         if(vidHeight < 600 && videoLevel < 2){
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
