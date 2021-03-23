@@ -87,7 +87,7 @@
           id('loadVideo').src = '/resources/videos/horizontal600p.mp4'
         }else if(document.body.offsetHeight<720 && id('loadVideo').src.indexOf('horizontal720p') == -1){
           id('loadVideo').src = '/resources/videos/horizontal720p.mp4'
-        }else if(id('loadVideo').src.indexOf('horizontalMax') == -1){
+        }else if(document.body.offsetHeight>=720 && id('loadVideo').src.indexOf('horizontalMax') == -1){
           id('loadVideo').src = '/resources/videos/horizontalMax.mp4'
         }
       }else{
@@ -97,7 +97,7 @@
           id('loadVideo').src = '/resources/videos/vertical600p.mp4'
         }else if(document.body.offsetHeight<720 && id('loadVideo').src.indexOf('vertical720p') == -1){
           id('loadVideo').src = '/resources/videos/vertical720p.mp4'
-        }else if(id('loadVideo').src.indexOf('verticalMax') == -1){
+        }else if(document.body.offsetHeight>=720 && id('loadVideo').src.indexOf('verticalMax') == -1){
           id('loadVideo').src = '/resources/videos/verticalMax.mp4'
         }
       }
