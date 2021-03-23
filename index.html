@@ -1,0 +1,456 @@
+<link href='https://suburl.at/resources/master.css' rel='stylesheet' type='text/css'>
+<script src='https://suburl.at/resources/master.js'></script>
+<div style='display:block; position:absolute; background:#202020; overflow-X:hidden; overflow-Y:auto;'>
+  <video id='backgroundVideo1' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
+  <video id='backgroundVideo2' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
+  <div R='min-height:500px;'>
+    <div R='height:500px;'>
+      <div R='height:h(100*3/9)' style='color:white; z-index:5;'>
+        <div class='bottomCenterAlign' R='height:h(100*2.5/6); width:w(90); font-size:h(10);'>
+          <a id='titleSubLevel' R='margin:0 2.5px h(10) 0;' style='/*font-family:eedo*/'></a><b id='titleTopLevel' R='font-size:200%;' style='/*font-family:eedo*/'></b>
+        </div>
+        <div R='height:h(100*1/9)'></div>
+        <div R='height:h(100*1.5/6)'>
+          <input id='inputForKeyboard' type='text' style='position:absolute; opacity:0.01; border:none;'>
+          <input id='inputForPlaceholder' type='text' placeholder='URL you want to shorten or rename' autocomplete='off' R='width:w(87.5); height:h(85); max-width:h(83/1*15); border-radius:h(20);' style='position:absolute; background:rgba(255,255,255,0.85); border:none; box-shadow:inset 2px 2px 4px rgba(0,0,0,0.4); text-align:center;'>
+          <div id='domainWindow' class='topCenterAlign' R='width:w(90); height:h(100*3); max-width:h(83/1*15.5); border-radius:h(20);' style='display:none; position:absolute; top:0; background:white; box-shadow:2px 2px 4px rgba(0,0,0,0.4); overflow:hidden'>
+            <div R='height:calc(100% / 3 - 2.75px)' style='border:whitesmoke 1px solid;'>
+              <input id='inputForUrl' type='text' autocomplete='off' R='width:calc(98% - 45px); height:calc(100% - 2px); padding:0 35px 0 10px; border-radius:h(20);' style='position:absolute; background:whitesmoke; border:none; box-shadow:inset 2px 2px 4px rgba(0,0,0,0.4);'>
+              <img id='erashAll' src='https://suburl.at/resources/trashcan.svg' class='button' R='width:25px; transform:scale(0.9)' style='display:none; position:absolute; right:10.5px; object-fit:fill;'>
+            </div>
+            <div id='simpleShortenButton' class='button' R='height:calc(100% / 3 - 2.75px)' style='border:whitesmoke 1px solid; color:black;'>
+              <span R='font-size:h(40);' style='text-align:center;'>Shorten as '</span>
+              <b id='simpleShortenDomain' R='font-size:h(40);' style='text-align:center;'></b>
+              <span R='font-size:h(40);' style='text-align:center;'>'</span>
+            </div>
+            <div id='customShortenButton' class='button' R='height:calc(100% / 3 - 2.75px);' style='border:whitesmoke 1px solid; color:black;'>
+              <span R='font-size:h(40);' style='text-align:center;'>Use a custom domain</span>
+            </div>
+          </div>
+          <div id='scrollTargetBlock' R='height:vh(90)' style='pointer-events:none;'> 
+          </div>
+        </div>
+      </div>
+      <div R='height:h(100*2.25/9);' >
+      </div>
+    </div>
+    <div R='height:h(100*3/9); min-width:300px; max-width:400px; min-height:67.5px; bottom:0;' style='position:absolute; opacity:0.75;'>
+      <div R='height:h(15); font-Size:w(3);'>
+        <b>No need to copy/paste</b>
+      </div>
+      <span R='font-Size:w(2.75); letter-spacing:w(-0.1);' style='border-bottom:white 0.5px solid; color:white;'>
+        <b id='tipDomain' R='font-size:150%'></b>(https://)www.LongLink.com/Example
+      </span>
+    </div>
+  </div>
+</div>
+<div id='alertFrame' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
+  <div R='width:w(90); height:h(60); max-width:360px; max-height:100px; border-radius:s(2.5);' style='position:absolute; background:white;'>
+    <b id='alertText' R='font-size:w(4);' style='color:black;'></b>
+  </div>
+</div>
+<script>
+  domainList = ['sTiny.link', 'littl.cc']
+  titleList = [['Jungkookie','sTiny.link'],['ㅇ<아 ㅁ<미 ㅁ<마<만 ㅇ<으<의','단축.kr'],['n<にh<ほｎ<ん h<はsh<<しr<ら n<の = <<<<<<<! 二-本-柱-の =','短縮.cc'],['Ju=<<鞠 Jing=<<<<婧 Yi=<<禕 De=<<的','SubURL.at'],['Bitcoiner','sTiny.link'],['ㅅ<서 ㄱ<가<강 인=<人 ㅇ<으<의','단축.kr'],['t<とうw<わいs<す = <<<<<! ト-ゥ-ワ-イ-ス =','Fans.ms'],['🧀Emoji.Overload🐭','littl.cc']]
+  buttonOnFocus = 'none'
+  
+  window.addEventListener('touchstart', function() {
+    id('simpleShortenButton').className = 'noDrag'
+    id('customShortenButton').className = 'noDrag'
+  })
+  window.addEventListener('DOMContentLoaded', function(){
+    resizeResponsiveElements()
+    window.addEventListener('resize', function(){
+      resizeResponsiveElements()
+    })
+      if(document.body.offsetWidth > document.body.offsetHeight){
+        id('backgroundVideo1').src = '//suburl.at/resources/vid.mp4'
+      }else{
+        id('backgroundVideo1').src = '//suburl.at/resources/vertical.mp4'
+      }
+      videoLoaded = false
+      id('backgroundVideo1').addEventListener('canplaythrough', function(){
+        if(videoLoaded == false){
+          videoLoaded = true
+          id('backgroundVideo2').src = id('backgroundVideo1').src
+          elementFadeIn('backgroundVideo1')
+          id('backgroundVideo1').play()
+          id('backgroundVideo1').playbackRate = 0.6;
+          setInterval(function(){
+            playVideo(1)
+          },22000)
+          setTimeout(function(){
+            playVideo(2)
+            setInterval(function(){
+              playVideo(2)
+            },22000)
+          },11000)
+        }
+      })
+
+    function playVideo(numb){
+      id('backgroundVideo' + numb).currentTime = 4.5
+      id('backgroundVideo' + numb).play()
+      id('backgroundVideo' + numb).playbackRate = 0.6;
+      if(id('backgroundVideo2').style.display == 'none'){
+        elementFadeIn('backgroundVideo2',10000)
+      }else{
+        elementFadeOut('backgroundVideo2',10000)
+      }
+    }
+    
+    if(getParameter('from')){
+      id('titleSubLevel').innerHTML = getParameter('from')
+      id('simpleShortenDomain').innerHTML = 'sTiny.link'
+    }else{
+      id('titleSubLevel').innerHTML = 'Welcome.to.'
+      id('simpleShortenDomain').innerHTML = '단축.kr'
+    }
+    id('titleTopLevel').innerHTML = '단축.kr'
+    id('tipDomain').innerHTML = '단축.kr' + '/'
+    
+expandAnimation=`
+<style>
+  @keyframes expand {
+    0% {
+      width:0px;
+    }
+    100% {
+      width:` + id('titleSubLevel').offsetWidth + `px;
+    }
+  }
+</style>
+`
+document.head.innerHTML+=expandAnimation
+    
+    id('titleSubLevel').style.display = 'none'
+    id('titleSubLevel').style.opacity = 0
+
+    setTimeout(function(){
+      animation('titleSubLevel','expand 1.5s both')
+      id('titleSubLevel').style.display = 'flex'
+      setTimeout(function(){
+        elementFadeIn('titleSubLevel',3000)
+      },2000)
+    },1500)
+    
+    titleCount = Math.floor(Math.random() * 8)
+    setTimeout(function(){
+      titleAnimation()
+    },12500)
+    function titleAnimation(){
+      deletingAnimation()
+      function subLevelAnimation(){
+        if(subLevelCount == domainPickedSubLevel.length){
+          id('titleSubLevel').innerHTML += '.'
+          setTimeout(function(){
+            deletingAnimation()
+          },9000)
+          return
+        }
+        letterPicked = domainPickedSubLevel[subLevelCount]
+        if(letterPicked == '!'){
+          elementFadeIn('titleSubLevel','reset')
+          subLevelCount += 1
+          subLevelAnimation()
+        }else if(letterPicked == '<'){
+          id('titleSubLevel').innerHTML = id('titleSubLevel').innerHTML.slice(0,-1)
+          subLevelCount += 1
+          subLevelAnimation()
+        }else if(letterPicked == '='){
+          subLevelCount += 1
+          setTimeout(function(){
+            subLevelAnimation()
+          },150)
+        }else{
+          if(letterPicked != '-'){
+            id('titleSubLevel').innerHTML += letterPicked
+          }else{
+            id('titleSubLevel').innerHTML += domainPickedSubLevel[subLevelCount+1]
+            subLevelCount += 1
+          }
+          subLevelCount += 1
+          if(domainPickedSubLevel[subLevelCount] == '-'){
+            subLevelAnimation()
+          }else{
+            setTimeout(function(){
+              subLevelAnimation()
+            },150)
+          }
+        }
+      }
+      function deletingAnimation(){
+        if(id('titleSubLevel').innerHTML){
+          id('titleSubLevel').innerHTML = id('titleSubLevel').innerHTML.slice(0,-1)
+          setTimeout(function(){
+            deletingAnimation()
+          },100)
+        }else{
+          if(titleCount == 7){
+            titleCount = 0
+          }else{
+            titleCount += 1
+          }
+          domainPicked = titleList[titleCount]
+          domainPickedTopLevel = domainPicked[1]
+          domainPickedSubLevel = domainPicked[0].replaceAll(' ','')
+          topLevelCount = titleCount
+          setTimeout(function(){
+            topLevelAnimation()
+          },2000)
+          setTimeout(function(){
+            subLevelCount = 0
+            subLevelAnimation()
+          },7000)
+        }
+      }
+      function topLevelAnimation(){
+        if(topLevelCount == 7){
+          topLevelCount = 0
+        }else{
+          topLevelCount += 1
+        }
+        if(topLevelCount == (titleCount + 4) % 8){
+          id('titleTopLevel').innerHTML = titleList[titleCount][1]
+          elementFadeIn('titleTopLevel','reset')
+        }else{
+          id('titleTopLevel').innerHTML = titleList[topLevelCount][1]
+          elementFadeIn('titleTopLevel','reset')
+          setTimeout(function(){
+            topLevelAnimation()
+          },750)
+        }
+      }
+    }
+    
+    window.addEventListener('keydown', function() {
+      if(event.keyCode == 13){
+        id('inputForPlaceholder').focus()
+      }
+    })
+    id('inputForPlaceholder').addEventListener('focus', function(){
+      id('inputForPlaceholder').value = ' '
+      elementFadeIn('domainWindow')
+      id('inputForUrl').focus()
+      setTimeout(function(){
+        id('inputForPlaceholder').value = ''
+      },500)
+    })
+    id('inputForUrl').addEventListener('focus', function(){
+      try{clearTimeout(inputForUrlblurTimeout)}catch{}
+      setTimeout(function(){
+        id('scrollTargetBlock').scrollIntoView(true)
+      },500)
+      elementFadeIn('domainWindow')
+    })
+    id('inputForUrl').addEventListener('blur', function(){
+      inputForUrlblurTimeout = setTimeout(function(){
+        buttonOnFocus = 'none'
+        if(id('inputForUrl').value == ''){
+          elementFadeOut('domainWindow')
+          setTimeout(function(){
+            simpleShortenButtonBlur()
+            customShortenButtonBlur()
+          },500)
+        }else{
+          simpleShortenButtonBlur()
+          customShortenButtonBlur()
+        }
+      },100)
+    })
+    id('inputForUrl').addEventListener('input', function(){
+      id('scrollTargetBlock').scrollIntoView(true)
+      if(id('inputForUrl').value != ''){
+        id('erashAll').style.display = 'flex'
+      }else{
+        id('erashAll').style.display = 'none'
+      }
+    })
+    id('erashAll').addEventListener('click', function(){
+      id('inputForUrl').focus()
+      id('inputForUrl').value = ''
+      id('erashAll').style.display = 'none'
+      simpleShortenButtonBlur()
+      customShortenButtonBlur()
+    })
+    id('inputForUrl').addEventListener('keydown', function(){
+      if(event.keyCode == 38 || event.keyCode == 40){
+        if(buttonOnFocus != 'simpleShortenButton'){
+          simpleShortenButtonFocus()
+          customShortenButtonBlur()
+          id('inputForUrl').blur()
+          setTimeout(function(){id('inputForUrl').focus()},1)
+        }else{
+          customShortenButtonFocus()
+          simpleShortenButtonBlur()
+          id('inputForUrl').blur()
+          setTimeout(function(){id('inputForUrl').focus()},1)
+        }
+      }
+      if(event.keyCode == 13){
+        if(buttonOnFocus == 'simpleShortenButton'){
+          id('simpleShortenButton').click()
+        }else if(buttonOnFocus == 'customShortenButton'){
+          id('customShortenButton').click()
+        }else{
+          customShortenButtonFocus()
+        }
+      }
+      if(event.keyCode == 27){
+        if(buttonOnFocus == 'none'){
+          id('inputForUrl').blur()
+        }else{
+          simpleShortenButtonBlur()
+          customShortenButtonBlur()
+          buttonOnFocus = 'none'
+        }
+      }
+    })
+    id('simpleShortenButton').addEventListener('click', function(){
+      //for the click effect
+      customShortenButtonBlur()
+      simpleShortenButtonFocus()
+      buttonOnFocus = 'none'
+      setTimeout(function(){
+        simpleShortenButtonBlur()
+      },100)
+      
+      id('inputForKeyboard').focus()
+      setTimeout(function(){
+        id('inputForPlaceholder').focus()
+      },2000)
+      if(id('inputForUrl').value){
+        urlIfShortenedResult = urlCheckIfShortened(id('inputForUrl').value)
+        if (urlIfShortenedResult){
+          simpleShortenSuccess(urlIfShortenedResult)
+        } else if (urlCheckifValid(id('inputForUrl').value)) {
+          customAlert('Loading...')
+          getJSONP('https://apiserver.wixsite.com/litn/_functions/eedo/setURL?longLink=' + urlProcessing(id('inputForUrl').value) + '&func=simpleShortenSuccess')
+        }
+      }else{
+        customAlert('Please enter a link first',2000)
+      }
+    })
+    id('customShortenButton').addEventListener('click', function(){
+      //for the click effect
+      simpleShortenButtonBlur()
+      customShortenButtonFocus()
+      buttonOnFocus = 'none'
+      setTimeout(function(){
+        customShortenButtonBlur()
+      },100)
+      
+      id('inputForKeyboard').focus()
+      setTimeout(function(){
+        id('inputForPlaceholder').focus()
+      },2000)
+      if(id('inputForUrl').value){
+        urlIfShortenedResult = urlCheckIfShortened(id('inputForUrl').value)
+        if (urlIfShortenedResult){
+          uniqueShortenSuccess(urlIfShortenedResult)
+        } else if (urlCheckifValid(id('inputForUrl').value)) {
+          customAlert('Loading...')
+          getJSONP('https://apiserver.wixsite.com/litn/_functions/eedo/setURL?longLink=' + urlProcessing(id('inputForUrl').value) + '&func=uniqueShortenSuccess')
+        }
+      }else{
+        customAlert('Please enter a link first',2000)
+      }
+    })
+    function simpleShortenButtonFocus(){
+      id('simpleShortenButton').style.background = 'gray'
+      id('simpleShortenButton').style.color = 'white'
+      buttonOnFocus = 'simpleShortenButton'
+    }
+    function simpleShortenButtonBlur(){
+      id('simpleShortenButton').style.background = 'white'
+      id('simpleShortenButton').style.color = 'black'
+    }
+    function customShortenButtonFocus(){
+      id('customShortenButton').style.background = 'gray'
+      id('customShortenButton').style.color = 'white'
+      buttonOnFocus = 'customShortenButton'
+    }
+    function customShortenButtonBlur(){
+      id('customShortenButton').style.background = 'white'
+      id('customShortenButton').style.color = 'black'
+    }
+    function urlCheckIfShortened(url) {
+      var protocolRemoved
+      if (url.indexOf('://') != -1){
+        protocolRemoved = (url.split('://'))[1]
+      } else {
+        protocolRemoved = url
+      }
+      if (protocolRemoved.toLowerCase().indexOf('bit.ly/') == 0) {
+        return protocolRemoved.replace(caseInsensitive('bit.ly/'),'b:')
+      } else if (protocolRemoved.toLowerCase().indexOf('cutt.ly/') == 0) {
+        return protocolRemoved.replace(caseInsensitive('cutt.ly/'),'c:')
+      } else {
+        for(i in domainList){
+          if (protocolRemoved.toLowerCase().indexOf(domainList[i].toLowerCase()) == 0) {
+            if((protocolRemoved.split(caseInsensitive(domainList[i])))[1] == '' || (protocolRemoved.split(caseInsensitive(domainList[i])))[1] == '/'){
+              return false
+            }else{
+              return (protocolRemoved.split(caseInsensitive(domainList[i] + '/')))[1]
+            }
+          }
+        }
+      }
+      return false
+    }
+    function urlCheckifValid(url) {
+      var urlHostname
+      var protocolRemoved
+      if (url.indexOf('://') != -1){
+        protocolRemoved = (url.split('://'))[1]
+      } else {
+        protocolRemoved = url
+      }
+      //our site?
+      for(i in domainList){
+        if (protocolRemoved.toLowerCase().indexOf(domainList[i].toLowerCase()) == 0) {
+          if((protocolRemoved.split(caseInsensitive(domainList[i])))[1] == '' || (protocolRemoved.split(caseInsensitive(domainList[i])))[1] == '/'){
+            customAlert('Welcome to ' + domainList[i] + ' 😘',2000)
+            return
+          }
+        }
+      }
+      //valid host name?
+      if (protocolRemoved.split('.').length == 1) {
+        customAlert('Wrong url format',2000)
+        return
+      }
+      if (url.indexOf('/') != -1) {
+        urlHostname = (protocolRemoved.split('/'))[0]
+      }else if(url.indexOf('?') != -1) {
+        urlHostname = (protocolRemoved.split('?'))[0]
+      }else if(url.indexOf('#') != -1) {
+        urlHostname = (protocolRemoved.split('#'))[0]
+      }else{
+        urlHostname = (protocolRemoved.split('.'))[0]
+      }
+      //valid characters?
+      unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', '`', "'", ' ', ':', '/']
+      for (var i = 0; i < unvalidCharacter.length; i++) {
+        if (urlHostname.indexOf(unvalidCharacter[i]) != -1) {
+            customAlert('Wrong url format',2000)
+            return
+        }
+      }
+      return true
+    }
+    function caseInsensitive(string) {
+      return RegExp(string,'ig')
+    }
+    function urlProcessing(url) {
+      url = url.split(' ').join('')
+      if (url.indexOf('://') == -1) {
+        url = 'http://' + url
+      }
+      return encodeURIComponent(url)
+    }
+    function simpleShortenSuccess(shortCode) {
+      shortCode
+    }
+  })
+</script>
