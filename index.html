@@ -73,15 +73,16 @@
     id('customShortenButton').className = 'noDrag'
   })
   window.addEventListener('DOMContentLoaded', function(){
+    videoLoaded = false
+    videoLevel = 0
+    
     resizeResponsiveElements()
     resizeVideo()
     window.addEventListener('resize', function(){
       resizeResponsiveElements()
       resizeVideo()
     })
-    
-    videoLoaded = false
-    videoLevel = 0
+
     function resizeVideo(){
       var vidHeight = id('backgroundVideo1').offsetHeight
       if(id('backgroundVideo1').offsetHeight / 3 * 2.5 < id('backgroundVideo1').offsetWidth){
