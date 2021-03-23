@@ -81,7 +81,7 @@
     })
     function resizeVideo(){
       var vidHeight = document.body.offsetHeight
-      if(document.body.offsetWidth > document.body.offsetHeight){
+      if(document.body.offsetHeight / 3 * 2.5 < document.body.offsetWidth){
         if(vidHeight < 480 && id('loadVideo').src.indexOf('horizontal480p') == -1){
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
         }else if(480 <= vidHeight && vidHeight < 600 && id('loadVideo').src.indexOf('horizontal600p') == -1){
