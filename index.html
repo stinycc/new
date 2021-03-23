@@ -102,7 +102,38 @@
         }
       }
     }
-      videoLoaded = false
+    
+      id('loadVideo').addEventListener('canplaythrough', function(){
+        id('backgroundVideo1').src = id('loadVideo')
+        id('backgroundVideo2').src = id('loadVideo')
+        if(videoLoaded == false){
+          videoLoaded = true
+          elementFadeIn('backgroundVideo1')
+          id('backgroundVideo1').play()
+          id('backgroundVideo1').playbackRate = 0.6;
+          setInterval(function(){
+            playVideo(1)
+          },22000)
+          setTimeout(function(){
+            playVideo(2)
+            setInterval(function(){
+              playVideo(2)
+            },22000)
+          },11000)
+        }
+      })
+
+    function playVideo(numb){
+      id('backgroundVideo' + numb).currentTime = 4.5
+      id('backgroundVideo' + numb).play()
+      id('backgroundVideo' + numb).playbackRate = 0.6;
+      if(id('backgroundVideo2').style.display == 'none'){
+        elementFadeIn('backgroundVideo2',10000)
+      }else{
+        elementFadeOut('backgroundVideo2',10000)
+      }
+    }
+      /*videoLoaded = false
       id('loadVideo').addEventListener('canplaythrough', function(){
         if(videoLoaded == false){
           elementFadeIn('backgroundVideo1')
@@ -122,20 +153,17 @@
 
     function playVideo(numb){
       id('backgroundVideo' + numb).src = id('loadVideo').src
-      id('backgroundVideo' + numb).currentTime = 4.5
-      id('backgroundVideo' + numb).play()
-      id('backgroundVideo' + numb).playbackRate = 0.6;
-      /*if(videoLoaded){
+      if(videoLoaded){
         id('backgroundVideo' + numb).currentTime = 4.5
       }
       id('backgroundVideo' + numb).play()
-      id('backgroundVideo' + numb).playbackRate = 0.6;*/
+      id('backgroundVideo' + numb).playbackRate = 0.6;
       if(id('backgroundVideo2').style.display == 'none'){
         elementFadeIn('backgroundVideo2',10000)
       }else{
         elementFadeOut('backgroundVideo2',10000)
       }
-    }
+    }*/
     
     if(getParameter('from')){
       id('titleSubLevel').innerHTML = getParameter('from')
