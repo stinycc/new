@@ -82,6 +82,7 @@
     function resizeVideo(){
       if(document.body.offsetWidth > document.body.offsetHeight){
         if(document.body.offsetHeight<480 && id('loadVideo').src.indexOf('horizontal480p') == -1){
+          alert('d')
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
         }else if(document.body.offsetHeight<600 && id('loadVideo').src.indexOf('horizontal600p') == -1){
           id('loadVideo').src = '/resources/videos/horizontal600p.mp4'
