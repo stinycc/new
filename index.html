@@ -105,11 +105,13 @@
     
       videoLoaded = false
       id('loadVideo').addEventListener('canplaythrough', function(){
-        id('backgroundVideo1').src = id('loadVideo').src
-        id('backgroundVideo2').src = id('loadVideo').src
+        loadedSrc = id('loadVideo').src
         if(videoLoaded == false){
+          id('backgroundVideo1').src = loadedSrc
+          id('backgroundVideo1').currentTime = 4.5
+          id('backgroundVideo1').play()
+          id('backgroundVideo1').playbackRate = 0.6;
           elementFadeIn('backgroundVideo1')
-          playVideo(1)
           videoLoaded = true
           setInterval(function(){
             playVideo(1)
@@ -124,6 +126,7 @@
       })
 
     function playVideo(numb){
+      id('backgroundVideo' + numb).src = loadedSrc
       id('backgroundVideo' + numb).currentTime = 4.5
       id('backgroundVideo' + numb).play()
       id('backgroundVideo' + numb).playbackRate = 0.6;
