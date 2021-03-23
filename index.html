@@ -102,7 +102,7 @@
         }
       }
     }
-    
+      videoLoaded = false
       id('loadVideo').addEventListener('canplaythrough', function(){
         id('backgroundVideo1').src = id('loadVideo')
         id('backgroundVideo2').src = id('loadVideo')
@@ -133,7 +133,7 @@
         elementFadeOut('backgroundVideo2',10000)
       }
     }
-      /*videoLoaded = false
+      /*
       id('loadVideo').addEventListener('canplaythrough', function(){
         if(videoLoaded == false){
           elementFadeIn('backgroundVideo1')
