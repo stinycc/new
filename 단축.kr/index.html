@@ -152,8 +152,6 @@
           id('loadVideo').src = '/resources/videos/horizontal720p.mp4'
         }else if(900 <= vidHeight && id('loadVideo').src.indexOf('horizontalMax') == -1){
           id('loadVideo').src = '/resources/videos/horizontalMax.mp4'
-        }else{
-          return
         }
       }else{
         if(vidHeight < 600 && id('loadVideo').src == ''){
@@ -164,34 +162,27 @@
           id('loadVideo').src = '/resources/videos/vertical720p.mp4'
         }else if(900 <= vidHeight && id('loadVideo').src.indexOf('Max') == -1){
           id('loadVideo').src = '/resources/videos/verticalMax.mp4'
-        }else{
-          return
         }
       }
-      videoLaunched = false
     }
     
       id('loadVideo').addEventListener('canplaythrough', function(){
         loadedSrc = id('loadVideo').src
+        id('backgroundVideo1').src = loadedSrc
+        id('backgroundVideo2').src = loadedSrc
         if(videoLaunched == false){
-          try{
-            clearInterval(videoLaunchInterval1)
-            clearInterval(videoLaunchInterval2)
-            clearTimeout(videoLaunchTimeout)
-            elementFadeOut('backgroundVideo2',2000)
-          }catch{}
           id('backgroundVideo1').src = loadedSrc
           id('backgroundVideo1').currentTime = 0
           id('backgroundVideo1').play()
           id('backgroundVideo1').playbackRate = 0.6;
           elementFadeIn('backgroundVideo1',2000)
           videoLaunched = true
-          videoLaunchInterval1 = setInterval(function(){
+          setInterval(function(){
             playVideo(1)
           },22000)
-          videoLaunchTimeout = setTimeout(function(){
+          setTimeout(function(){
             playVideo(2)
-            videoLaunchInterval2 = setInterval(function(){
+          setInterval(function(){
               playVideo(2)
             },22000)
           },11000)
