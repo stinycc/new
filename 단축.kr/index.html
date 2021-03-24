@@ -611,13 +611,12 @@ document.head.innerHTML+=expandAnimation
     twitterGenerate('%F0%9F%94%97 ' + id('ResultText').innerHTML + '%0A' + '%F0%9F%A5%88 SubURL.at/' + (id('ResultText').innerHTML.split('/'))[1])
     elementFadeOut('twitterFrame')
     elementFadeIn('ResultFrame')
+    customAlert('Loading Twitter...',3000)
   })
   function twitterGenerate(twt){
     if(mobileCheck()){
       appCheck('twitter://post?message=' + twt, 3000).then(function(result){
-        if(result){
-          //'트위터로드중...' 지우기
-        }else{
+        if(result == false){
           window.open('https://twitter.com/intent/tweet?text=' + twt)
         }
       })
