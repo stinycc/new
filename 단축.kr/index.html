@@ -184,13 +184,13 @@
               clearTimeout(launchVideoTimeout)
               clearInterval(launchVideoInterval2)
             }catch{}
-            elementFadeOut('backgroundVideo2',3000,'reset')
+            elementFadeOut('backgroundVideo2',2000,'reset')
             setVideo(1,5)
           }else{
             setVideo(1,0)
             setVideo(2,4.5)
           }
-          elementFadeIn('backgroundVideo1',2000,'reset')
+          elementFadeIn('backgroundVideo1',1000,'reset')
           videoLaunched = true
           launchVideoInterval1 = setInterval(function(){
             replayVideo(1)
