@@ -65,7 +65,7 @@
 </div>
 <div id='ResultFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
   <div class='topCenterAlign' R='width:w(90); height:w(9); max-width:400px; max-height:40px;'>
-    <b id='ResultText' R='font-size:w(5);'></b>
+    <b id='ResultText' R='font-size:w(4.5);'></b>
   </div>
   <div R='width:w(90); height:w(45); max-width:400px; max-height:200px; border-radius:s(2.5);' style='background:white;'>
     <div R='height:h(90);'>
@@ -94,6 +94,30 @@
   <div R='width:w(90); height:w(45); max-width:400px; max-height:200px; border-radius:s(2.5);' style='background:white;'>
     <div R='height:h(90);'>
       
+    </div>
+  </div>
+</div>
+<div id='twitterFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
+  <div R='width:w(90); height:w(45); max-width:400px; max-height:200px; border-radius:s(2.5);' style='background:white;'>
+    <div R='height:h(90);'>
+      <div R='width:w(90); height:h(57.5); font-size:w(3.5); color:black;'>
+        Unfortunately, Twitter does not allow non-English links to be hyperlinked. So, we can either add you an SubURL that does work on Twitter, OR you can rename the link in English.
+      </div>
+      <div class='topCenterAlign' R='height:h(17.5); font-size:w(4); color:black;'>
+        <b>Proceed to Twitter?</b>
+      </div>
+      <div R='width:w(95); height:h(25);'>
+        <div R='width:w(50);'>
+          <div id='twitterNo' class='button' R='width:w(95); height:h(90); border-radius:s(20);' style='background:rgba(0,0,0,.7);'>
+            <b R='font-size:w(8);'>No</b>
+          </div>
+        </div>
+        <div R='width:w(50);'>
+          <div id='twitterYes' class='button' R='width:w(95); height:h(90); border-radius:s(20);' style='background:rgba(29,161,242,.7);'>
+            <b R='font-size:w(8);'>Yes</b>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -555,6 +579,10 @@ document.head.innerHTML+=expandAnimation
       id('ResultText').innerHTML = shortenedUrl
   }
 
+  function uniqueShortenSuccess(shortCode) {
+      alert(shortCode)
+  }
+  
   id('ResultTwitter').addEventListener('click',function(){
     var twitterAllowed, twitterCheck
     twitterAllowed = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890./:'
@@ -563,9 +591,9 @@ document.head.innerHTML+=expandAnimation
       twitterCheck = twitterCheck.replaceAll(twitterAllowed[i],'')
     }
     if (twitterCheck == ''){
-      twitterGenerate('%F0%9F%94%97 ' + id('result').value + '%0A')
+      twitterGenerate('%F0%9F%94%97 ' + id('result').value + '%0A' + '%F0%9F%A5%88 SubURL.at/' + (id('ResultText').innerHTML.split('/'))[1])
     }else{
-      //서브유에랄필요할때
+      elementFadeIn('twitterFrame')
     }
   })
   id('ResultRename').addEventListener('click',function(){
@@ -574,14 +602,18 @@ document.head.innerHTML+=expandAnimation
   id('ResultClose').addEventListener('click',function(){
     elementFadeOut('ResultFrame')
   })
-  function uniqueShortenSuccess(shortCode) {
-      alert(shortCode)
-  }
+  id('twitterNo').addEventListener('click',function(){
+    elementFadeOut('twitterFrame')
+  })
+  id('twitterYes').addEventListener('click',function(){
+    elementFadeOut('twitterFrame')
+    twitterGenerate()
+  })
   function twitterGenerate(twt){
     if(mobileCheck()){
       appCheck('twitter://post?message=' + twt, 3000).then(function(result){
         if(result){
-          //트위터로드중 지우기
+          //'트위터로드중...' 지우기
         }else{
           window.open('https://twitter.com/intent/tweet?text=' + twt)
         }
