@@ -536,6 +536,9 @@ document.head.innerHTML+=expandAnimation
       //valid host name?
       if (protocolRemoved.split('.').length == 1) {
         customAlert('Wrong url format',2000)
+        setTimeout(function(){
+          id('inputForPlaceholder').focus()
+        },2000)
         return
       }
       if (url.indexOf('/') != -1) {
@@ -552,6 +555,9 @@ document.head.innerHTML+=expandAnimation
       for (var i = 0; i < unvalidCharacter.length; i++) {
         if (urlHostname.indexOf(unvalidCharacter[i]) != -1) {
             customAlert('Wrong url format',2000)
+            setTimeout(function(){
+              id('inputForPlaceholder').focus()
+            },2000)
             return
         }
       }
