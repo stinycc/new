@@ -505,6 +505,8 @@ document.head.innerHTML+=expandAnimation
         return protocolRemoved.replace(caseInsensitive('bit.ly/'),'b:')
       } else if (protocolRemoved.toLowerCase().indexOf('cutt.ly/') == 0) {
         return protocolRemoved.replace(caseInsensitive('cutt.ly/'),'c:')
+      } else if (localStorage.getItem(id('inputForUrl').value)) {
+        return localStorage.getItem(id('inputForUrl').value)
       } else {
         for(i in domainList){
           if (protocolRemoved.toLowerCase().indexOf(domainList[i].toLowerCase()) == 0 && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '' && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '/') {
@@ -569,10 +571,11 @@ document.head.innerHTML+=expandAnimation
   })
   
   function simpleShortenSuccess(shortCode) {
+      localStorage.setItem(id('inputForUrl').value, shortCode);
       var shortenedUrl = id('simpleShortenDomain').innerHTML + '/' + shortCode
       id('inputForKeyboard').value = shortenedUrl
       id('inputForKeyboard').select()
-      document.execCommand("copy");
+      document.execCommand("copy")
       id('inputForKeyboard').blur()
       elementFadeOut('alertFrame')
       elementFadeIn('ResultFrame')
