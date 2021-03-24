@@ -206,7 +206,7 @@
       id('backgroundVideo' + numb).src = id('loadVideo').src
       id('backgroundVideo' + numb).playbackRate = 0.6
       id('backgroundVideo' + numb).play()
-      id('backgroundVideo2').currentTime = startTime
+      id('backgroundVideo' + numb).currentTime = startTime
     }
     function replayVideo(numb){
       if(id('backgroundVideo1').src == id('backgroundVideo2').src){
