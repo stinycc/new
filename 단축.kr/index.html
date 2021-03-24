@@ -64,7 +64,7 @@
   </div>
 </div>
 <div id='simpleResultFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
-  <div class='topCenterAlign' R='width:w(90); height:w(7.5); max-width:450px; max-height:37.5px;'>
+  <div class='topCenterAlign' R='width:w(90); height:w(9); max-width:400px; max-height:40px;'>
     <b id='simpleResultText' R='font-size:w(5);'></b>
   </div>
   <div R='width:w(90); height:w(45); max-width:400px; max-height:200px; border-radius:s(2.5);' style='background:white;'>
@@ -73,16 +73,16 @@
         <b R='margin-bottom:h(27.5); font-size:w(3.5); color:black;'>Result successfully copied to clipboard!</b>
       </div>
       <div R='height:h(100*2.75/10);'>
-        <div class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(29,161,242,.7);'>
+        <div id='simpleResultTwitter' class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(29,161,242,.7);'>
           <b R='font-size:w(4);'>Copy it to Twitter</b>
         </div>
       </div>
-      <div R='height:h(100*2.75/10);'>
+      <div id='simpleResultRename' R='height:h(100*2.75/10);'>
         <div class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(0,0,0,.4);'>
           <b R='font-size:w(4);'>Rename this link</b>
         </div>
       </div>
-      <div R='height:h(100*2.75/10);'>
+      <div id='simpleResultClose' R='height:h(100*2.75/10);'>
         <div class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(0,0,0,.7);'>
           <b R='font-size:w(4);'>Close</b>
         </div>
@@ -548,6 +548,16 @@ document.head.innerHTML+=expandAnimation
       id('simpleResultText').innerHTML = shortenedUrl
   }
 
+  id('simpleResultTwitter').addEventListener('click',function(){
+    
+  })
+  id('simpleResultRename').addEventListener('click',function(){
+    uniqueShortenSuccess(id('simpleResultText').innerHTML.replace(id('simpleShortenDomain').innerHTML + '/'))
+  })
+  id('simpleResultClose').addEventListener('click',function(){
+    elementFadeOut('simpleResultFrame')
+  })
+  
   function uniqueShortenSuccess(shortCode) {
       alert(shortCode)
   }
