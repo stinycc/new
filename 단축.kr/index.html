@@ -549,7 +549,17 @@ document.head.innerHTML+=expandAnimation
   }
 
   id('simpleResultTwitter').addEventListener('click',function(){
-    
+    var twitterAllowed, twitterCheck
+    twitterAllowed = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890./:'
+    twitterCheck = id('simpleResultText').innerHTML
+    for (i in twitterAllowed){
+      twitterCheck = twitterCheck.replaceAll(twitterAllowed[i],'')
+    }
+    if (twitterCheck == ''){
+      twitterGenerate('%F0%9F%94%97 ' + id('result').value + '%0A')
+    }else{
+      //서브유에랄필요할때
+    }
   })
   id('simpleResultRename').addEventListener('click',function(){
     uniqueShortenSuccess(id('simpleResultText').innerHTML.replace(id('simpleShortenDomain').innerHTML + '/'))
@@ -557,9 +567,21 @@ document.head.innerHTML+=expandAnimation
   id('simpleResultClose').addEventListener('click',function(){
     elementFadeOut('simpleResultFrame')
   })
-  
   function uniqueShortenSuccess(shortCode) {
       alert(shortCode)
+  }
+  function twitterGenerate(twt){
+    if(mobileCheck()){
+      appCheck('twitter://post?message=' + twt, 3000).then(function(result){
+        if(result){
+          //트위터로드중 지우기
+        }else{
+          window.open('https://twitter.com/intent/tweet?text=' + twt)
+        }
+      })
+    }else{
+      window.open('https://twitter.com/intent/tweet?text=' + twt)
+    }
   }
 </script>
     
