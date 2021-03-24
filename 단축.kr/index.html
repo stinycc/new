@@ -182,7 +182,7 @@
             clearInterval(launchVideoInterval1)
             clearInterval(launchVideoInterval2)
             clearTimeout(launchVideoTimeout)
-            elementFadeOut('backgroundVideo1',2000)
+            elementFadeOut('backgroundVideo1',0)
           }catch{}
           if(id('backgroundVideo1').playing || id('backgroundVideo2').playing){
             setVideo(1,4.5)
