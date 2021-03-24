@@ -179,9 +179,11 @@
       id('loadVideo').addEventListener('canplaythrough', function(){
         if(videoLaunched == false){
           if(id('backgroundVideo1').src || id('backgroundVideo2').src){
-            clearInterval(launchVideoInterval1)
-            clearInterval(launchVideoInterval2)
-            clearTimeout(launchVideoTimeout)
+            try{
+              clearInterval(launchVideoInterval1)
+              clearTimeout(launchVideoTimeout)
+              clearInterval(launchVideoInterval2)
+            }catch{}
             setVideo(1,5)
           }else{
             setVideo(1,0)
