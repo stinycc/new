@@ -180,6 +180,7 @@
       id('loadVideo').addEventListener('canplaythrough', function(){
         loadedSrc = id('loadVideo').src
         if(videoLaunched == false){
+          id('loadVideo').src = loadedSrc.replace('vertical','horizontal')
           if(id('backgroundVideo1').src || id('backgroundVideo2').src){
             try{
               clearInterval(launchVideoInterval1)
