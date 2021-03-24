@@ -141,9 +141,13 @@
     })
 
     function resizeVideo(){
-      var vidHeight = document.body.offsetHeight
-      var vidWidth = document.body.offsetWidth
-      if(document.body.offsetHeight / 3 * 2.5 < document.body.offsetWidth || document.body.offsetHeight < 500){
+      var vidHeight
+      if(document.body.offsetHeight < id('loadVideo').offsetHeight){
+        vidHeight = id('loadVideo').offsetHeight
+      }else{
+        vidHeight = document.body.offsetHeight
+      }
+      if(document.body.offsetHeight / 3 * 2.5 < document.body.offsetWidth){
         if(vidHeight < 600 && id('loadVideo').src.indexOf('horizontal') == -1){
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
         }else if(600 <= vidHeight && vidHeight < 720 && id('loadVideo').src.indexOf('horizontal600') + id('loadVideo').src.indexOf('horizontal720') + id('loadVideo').src.indexOf('horizontalMax') == -3){
