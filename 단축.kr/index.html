@@ -183,14 +183,14 @@
               clearInterval(launchVideoInterval1)
               clearTimeout(launchVideoTimeout)
               clearInterval(launchVideoInterval2)
-              elementFadeOut('backgroundVideo2',2000)
+              elementFadeOut('backgroundVideo2',2000,'reset')
             }catch{}
             setVideo(1,5)
           }else{
             setVideo(1,0)
             setVideo(2,4.5)
           }
-          elementFadeIn('backgroundVideo1',2000)
+          elementFadeIn('backgroundVideo1',2000,'reset')
           videoLaunched = true
           launchVideoInterval1 = setInterval(function(){
             replayVideo(1)
@@ -210,22 +210,12 @@
       id('backgroundVideo' + numb).currentTime = startTime
     }
     function replayVideo(numb){
-      if(id('backgroundVideo1').src == id('backgroundVideo2').src){
-        if(id('backgroundVideo2').style.display == 'none'){
-          elementFadeIn('backgroundVideo2',10000,'reset')
-          setVideo(2,4.5)
-        }else{
-          elementFadeOut('backgroundVideo2',10000,'reset')
-          setVideo(1,4.5)
-        }
+      if(id('backgroundVideo2').style.display == 'none'){
+        elementFadeIn('backgroundVideo2',10000,'reset')
+        setVideo(2,4.5)
       }else{
-        if(id('backgroundVideo2').style.display == 'none'){
-          elementFadeIn('backgroundVideo2',1000,'reset')
-          setVideo(2,4.5)
-        }else{
-          elementFadeOut('backgroundVideo2',1000,'reset')
-          setVideo(1,4.5)
-        }
+        elementFadeOut('backgroundVideo2',10000,'reset')
+        setVideo(1,4.5)
       }
     }
     
