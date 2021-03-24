@@ -156,7 +156,10 @@
           id('loadVideo').src = '/resources/videos/horizontal720p.mp4'
         }else if(900 <= vidHeight && id('loadVideo').src.indexOf('horizontalMax') == -1){
           id('loadVideo').src = '/resources/videos/horizontalMax.mp4'
+        }else{
+          return
         }
+        videoLaunched = false
       }else{
         if(vidHeight < 600 && id('loadVideo').src == ''){
           id('loadVideo').src = '/resources/videos/vertical480p.mp4'
@@ -166,34 +169,36 @@
           id('loadVideo').src = '/resources/videos/vertical720p.mp4'
         }else if(900 <= vidHeight && id('loadVideo').src.indexOf('Max') == -1){
           id('loadVideo').src = '/resources/videos/verticalMax.mp4'
+        }else{
+          return
         }
+        videoLaunched = false
       }
     }
     
       id('loadVideo').addEventListener('canplaythrough', function(){
         if(videoLaunched == false){
+          try{
+            clearInterval(launchVideoInterval1)
+            clearInterval(launchVideoInterval2)
+            clearTimeout(launchVideoTimeout)
+            elementFadeOut('backgroundVideo1',2000)
+          }catch{}
+          if(id('backgroundVideo1').playing || id('backgroundVideo2').playing){
+            id('backgroundVideo1').currentTime = 4.5
+          }
           setVideo(1)
           elementFadeIn('backgroundVideo1',2000)
           videoLaunched = true
-          setInterval(function(){
+          launchVideoInterval1 = setInterval(function(){
             replayVideo(1)
           },22000)
-          setTimeout(function(){
+          launchVideoTimeout = setTimeout(function(){
             replayVideo(2)
-            setInterval(function(){
+            launchVideoInterval2 = setInterval(function(){
               replayVideo(2)
             },22000)
           },11000)
-        }else{
-          if(id('backgroundVideo1').src != id('loadVideo').src){
-            /*id('loadVideo').style.display = 'flex'
-            id('loadVideo').play()
-            id('loadVideo').currentTime = id('backgroundVideo1').currentTime
-            id('loadVideo').playbackRate = 0.6*/
-            
-              setVideo(1)
-              setVideo(2)
-          }
         }
       })
     function setVideo(numb){
