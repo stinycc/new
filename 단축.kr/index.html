@@ -511,10 +511,22 @@ document.head.innerHTML+=expandAnimation
       }
       return encodeURIComponent(url)
     }
-    function simpleShortenSuccess(shortCode) {
-      shortCode
-    }
+
   })
+  
+  function simpleShortenSuccess(shortCode) {
+      var shortenedUrl = id('simpleShortenDomain').innerHTML + '/' + shortCode
+      id('inputForKeyboard').value = shortenedUrl
+      id('inputForKeyboard').select()
+      document.execCommand("copy");
+      id('inputForKeyboard').blur()
+      id('eraseInput').style.display = 'none'
+      elementFadeOut('alertFrame')
+  }
+
+  function uniqueShortenSuccess(shortCode) {
+      location.href = './library?shortCode=' + shortCode
+  }
 </script>
     
   </body>
