@@ -181,13 +181,14 @@
             },22000)
           },11000)
         }else{
-          id('loadVideo').style.display = 'flex'
-          id('loadVideo').currentTime = 4.5
-          id('loadVideo').playbackRate = 0.6
-          //id('loadVideo').play()
-          setVideo(1)
-          setVideo(2)
-          alert('d')
+          if(id('backgroundVideo1').src != id('loadVideo').src){
+            id('loadVideo').style.display = 'flex'
+            id('loadVideo').currentTime = 4.5
+            id('loadVideo').playbackRate = 0.6
+            id('loadVideo').play()
+            setVideo(1)
+            setVideo(2)
+          }
         }
       })
     function setVideo(numb){
