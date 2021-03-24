@@ -168,10 +168,11 @@
     
       id('loadVideo').addEventListener('canplaythrough', function(){
         if(videoLaunched == false){
+          video1Time = id('backgroundVideo1').currentTime
           id('backgroundVideo1').src = id('loadVideo').src
-          id('backgroundVideo1').currentTime = 0
+          id('backgroundVideo1').currentTime = video1Time
           id('backgroundVideo1').play()
-          id('backgroundVideo1').playbackRate = 0.6;
+          id('backgroundVideo1').playbackRate = 0.6
           elementFadeIn('backgroundVideo1',2000)
           videoLaunched = true
           setInterval(function(){
@@ -201,18 +202,10 @@
       id('backgroundVideo' + numb).currentTime = 4.5
       id('backgroundVideo' + numb).play()
       id('backgroundVideo' + numb).playbackRate = 0.6
-      if(id('backgroundVideo1').src == id('backgroundVideo2').src){
-        if(id('backgroundVideo2').style.display == 'none'){
-          elementFadeIn('backgroundVideo2',10000)
-        }else{
-          elementFadeOut('backgroundVideo2',10000)
-        }
+      if(id('backgroundVideo2').style.display == 'none'){
+        elementFadeIn('backgroundVideo2',10000)
       }else{
-        if(id('backgroundVideo2').style.display == 'none'){
-          elementFadeIn('backgroundVideo2',1000)
-        }else{
-          elementFadeOut('backgroundVideo2',1000)
-        }
+        elementFadeOut('backgroundVideo2',10000)
       }
     }
     
