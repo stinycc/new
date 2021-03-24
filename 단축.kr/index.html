@@ -449,12 +449,8 @@ document.head.innerHTML+=expandAnimation
         return protocolRemoved.replace(caseInsensitive('cutt.ly/'),'c:')
       } else {
         for(i in domainList){
-          if (protocolRemoved.toLowerCase().indexOf(domainList[i].toLowerCase()) == 0) {
-            if((protocolRemoved.split(caseInsensitive(domainList[i])))[1] == '' || (protocolRemoved.split(caseInsensitive(domainList[i])))[1] == '/'){
-              return false
-            }else{
-              return (protocolRemoved.split(caseInsensitive(domainList[i] + '/')))[1]
-            }
+          if (protocolRemoved.toLowerCase().indexOf(domainList[i].toLowerCase()) == 0 && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '' && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '/') {
+            return (protocolRemoved.split(caseInsensitive(domainList[i] + '/')))[1]
           }
         }
       }
