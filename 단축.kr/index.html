@@ -186,8 +186,10 @@
             id('loadVideo').currentTime = 4.5
             id('loadVideo').playbackRate = 0.6
             id('loadVideo').play()
-            setVideo(1)
-            setVideo(2)
+            setTimeout(function(){
+              setVideo(1)
+              setVideo(2)
+            },500)
           }
         }
       })
