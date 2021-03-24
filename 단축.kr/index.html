@@ -160,15 +160,16 @@
       }
     }
     
+    
     if(getParameter('from')){
       id('titleSubLevel').innerHTML = getParameter('from')
       id('simpleShortenDomain').innerHTML = 'sTiny.link'
     }else{
       id('titleSubLevel').innerHTML = 'Welcome.to.'
-      id('simpleShortenDomain').innerHTML = '단축.kr'
+      id('simpleShortenDomain').innerHTML = location.pathname
     }
-    id('titleTopLevel').innerHTML = '단축.kr'
-    id('tipDomain').innerHTML = '단축.kr' + '/'
+    id('titleTopLevel').innerHTML = location.pathname
+    id('tipDomain').innerHTML = location.pathname + '/'
     
 expandAnimation=`
 <style>
