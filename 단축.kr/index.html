@@ -160,16 +160,16 @@
       }
     }
     
-    
+    pathname = decodeURIComponent(location.pathname.replaceAll('/',''))
     if(getParameter('from')){
       id('titleSubLevel').innerHTML = getParameter('from')
       id('simpleShortenDomain').innerHTML = 'sTiny.link'
     }else{
       id('titleSubLevel').innerHTML = 'Welcome.to.'
-      id('simpleShortenDomain').innerHTML = location.pathname
+      id('simpleShortenDomain').innerHTML = pathname
     }
-    id('titleTopLevel').innerHTML = location.pathname
-    id('tipDomain').innerHTML = location.pathname + '/'
+    id('titleTopLevel').innerHTML = pathname
+    id('tipDomain').innerHTML = pathname + '/'
     
 expandAnimation=`
 <style>
