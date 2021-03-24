@@ -180,7 +180,9 @@
       id('loadVideo').addEventListener('canplaythrough', function(){
         loadedSrc = id('loadVideo').src
         if(videoLaunched == false){
-          id('loadVideo').src = loadedSrc.replace('vertical','horizontal')
+          setTimeout(function(){
+            id('loadVideo').src = loadedSrc.replace('vertical','horizontal')
+          },22000)
           if(id('backgroundVideo1').src || id('backgroundVideo2').src){
             try{
               clearInterval(launchVideoInterval1)
