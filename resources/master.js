@@ -153,6 +153,7 @@ function elementFadeOut(elementId, time, state) {
     }
     if(state == 'reset'){
         id(elementId).style.opacity = 1
+        id(elementId).style.display = 'flex'
     }else{
         id(elementId).style.opacity = id(elementId).offset('opacity')
     }
