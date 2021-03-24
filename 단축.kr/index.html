@@ -168,7 +168,7 @@
     
       id('loadVideo').addEventListener('canplaythrough', function(){
         if(videoLaunched == false){
-          id('backgroundVideo1').src = loadedSrc
+          id('backgroundVideo1').src = id('loadVideo').src
           id('backgroundVideo1').currentTime = 0
           id('backgroundVideo1').play()
           id('backgroundVideo1').playbackRate = 0.6;
