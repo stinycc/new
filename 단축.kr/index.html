@@ -185,10 +185,9 @@
             elementFadeOut('backgroundVideo1',2000)
           }catch{}
           if(id('backgroundVideo1').playing || id('backgroundVideo2').playing){
-            setVideo(1)
-            id('backgroundVideo1').currentTime = 4.5
+            setVideo(1,4.5)
           }else{
-            setVideo(1)
+            setVideo(1,0)
           }
           elementFadeIn('backgroundVideo1',2000)
           videoLaunched = true
@@ -203,20 +202,29 @@
           },11000)
         }
       })
-    function setVideo(numb){
+    function setVideo(numb, startTime){
       id('backgroundVideo' + numb).src = id('loadVideo').src
       id('backgroundVideo' + numb).playbackRate = 0.6
       id('backgroundVideo' + numb).play()
+      id('backgroundVideo2').currentTime = startTime
     }
     function replayVideo(numb){
-      if(id('backgroundVideo2').style.display == 'none'){
-        elementFadeIn('backgroundVideo2',10000,'reset')
-        setVideo(2)
-        id('backgroundVideo2').currentTime = 4.5
+      if(id('backgroundVideo1').src == id('backgroundVideo2').src){
+        if(id('backgroundVideo2').style.display == 'none'){
+          elementFadeIn('backgroundVideo2',10000,'reset')
+          setVideo(2,4.5)
+        }else{
+          elementFadeOut('backgroundVideo2',10000,'reset')
+          setVideo(1,4.5)
+        }
       }else{
-        elementFadeOut('backgroundVideo2',10000,'reset')
-        setVideo(1)
-        id('backgroundVideo1').currentTime = 4.5
+        if(id('backgroundVideo2').style.display == 'none'){
+          elementFadeIn('backgroundVideo2',1000,'reset')
+          setVideo(2,4.5)
+        }else{
+          elementFadeOut('backgroundVideo2',1000,'reset')
+          setVideo(1,4.5)
+        }
       }
     }
     
