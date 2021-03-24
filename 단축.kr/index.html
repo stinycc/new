@@ -149,13 +149,13 @@
         vidHeight = document.body.offsetHeight
       }
       /*if(document.body.offsetHeight / 3 * 2.5 < document.body.offsetWidth){*/
-        if(vidHeight < 600 && loadedSrc.indexOf('horizontal') == -1){
+        if(vidHeight < 480 && loadedSrc.indexOf('horizontal') == -1){
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
-        }else if(600 <= vidHeight && vidHeight < 720 && loadedSrc.indexOf('horizontal600') + loadedSrc.indexOf('horizontal720') + loadedSrc.indexOf('horizontalMax') == -3){
+        }else if(480 <= vidHeight && vidHeight < 600 && loadedSrc.indexOf('horizontal600') + loadedSrc.indexOf('horizontal720') + loadedSrc.indexOf('horizontalMax') == -3){
           id('loadVideo').src = '/resources/videos/horizontal600p.mp4'
-        }else if(720 <= vidHeight && vidHeight < 900 && loadedSrc.indexOf('horizontal720') + loadedSrc.indexOf('horizontalMax') == -2){
+        }else if(600 <= vidHeight && vidHeight < 720 && loadedSrc.indexOf('horizontal720') + loadedSrc.indexOf('horizontalMax') == -2){
           id('loadVideo').src = '/resources/videos/horizontal720p.mp4'
-        }else if(900 <= vidHeight && loadedSrc.indexOf('horizontalMax') == -1){
+        }else if(720 <= vidHeight && loadedSrc.indexOf('horizontalMax') == -1){
           id('loadVideo').src = '/resources/videos/horizontalMax.mp4'
         }else{
           return
