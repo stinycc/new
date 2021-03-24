@@ -182,9 +182,9 @@
           },11000)
         }else{
           id('loadVideo').style.display = 'flex'
-          id('backgroundVideo' + numb).currentTime = 4.5
+          id('loadVideo').currentTime = 4.5
+          id('loadVideo').playbackRate = 0.6
           id('loadVideo').play()
-          id('backgroundVideo' + numb).playbackRate = 0.6
           setVideo(1)
           setVideo(2)
         }
@@ -193,13 +193,13 @@
       video1Time = id('backgroundVideo' + numb).currentTime
       id('backgroundVideo' + numb).src = id('loadVideo').src
       id('backgroundVideo' + numb).currentTime = video1Time
-      id('backgroundVideo' + numb).play()
       id('backgroundVideo' + numb).playbackRate = 0.6
+      id('backgroundVideo' + numb).play()
     }
     function replayVideo(numb){
       id('backgroundVideo' + numb).currentTime = 4.5
-      id('backgroundVideo' + numb).play()
       id('backgroundVideo' + numb).playbackRate = 0.6
+      id('backgroundVideo' + numb).play()
       if(id('backgroundVideo2').style.display == 'none'){
         elementFadeIn('backgroundVideo2',10000)
       }else{
