@@ -205,13 +205,14 @@
       id('backgroundVideo' + numb).play()
     }
     function replayVideo(numb){
-      id('backgroundVideo' + numb).currentTime = 4.5
-      id('backgroundVideo' + numb).playbackRate = 0.6
-      id('backgroundVideo' + numb).play()
       if(id('backgroundVideo2').style.display == 'none'){
         elementFadeIn('backgroundVideo2',10000,'reset')
+        id('backgroundVideo2').currentTime = 4.5
+        setVideo(2)
       }else{
         elementFadeOut('backgroundVideo2',10000,'reset')
+        id('backgroundVideo1').currentTime = 4.5
+        setVideo(1)
       }
     }
     
