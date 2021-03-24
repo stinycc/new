@@ -183,7 +183,7 @@
         }else{
           if(id('backgroundVideo1').src != id('loadVideo').src){
             id('loadVideo').style.display = 'flex'
-            id('loadVideo').currentTime = 4.5
+            id('loadVideo').currentTime = id('backgroundVideo1').currentTime
             id('loadVideo').playbackRate = 0.6
             id('loadVideo').play()
             setTimeout(function(){
