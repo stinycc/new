@@ -58,11 +58,6 @@
     </div>
   </div>
 </div>
-<div id='alertFrame' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
-  <div R='width:w(90); height:h(60); max-width:360px; max-height:100px; border-radius:s(2.5);' style='position:absolute; background:white;'>
-    <b id='alertText' R='font-size:w(4);' style='color:black;'></b>
-  </div>
-</div>
 <div id='ResultFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
   <div class='topCenterAlign' R='width:w(90); height:w(9); max-width:400px; max-height:40px;'>
     <b id='ResultText' R='font-size:w(4.5);'></b>
@@ -119,6 +114,11 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div id='alertFrame' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
+  <div R='width:w(90); height:h(60); max-width:360px; max-height:100px; border-radius:s(2.5);' style='position:absolute; background:white;'>
+    <b id='alertText' R='font-size:w(4);' style='color:black;'></b>
   </div>
 </div>
 <script>
@@ -593,6 +593,7 @@ document.head.innerHTML+=expandAnimation
     if (twitterCheck == ''){
       twitterGenerate('%F0%9F%94%97 ' + id('ResultText').innerHTML)
     }else{
+      elementFadeOut('ResultFrame')
       elementFadeIn('twitterFrame')
     }
   })
@@ -604,10 +605,12 @@ document.head.innerHTML+=expandAnimation
   })
   id('twitterNo').addEventListener('click',function(){
     elementFadeOut('twitterFrame')
+    elementFadeIn('ResultFrame')
   })
   id('twitterYes').addEventListener('click',function(){
     twitterGenerate('%F0%9F%94%97 ' + id('ResultText').innerHTML + '%0A' + '%F0%9F%A5%88 SubURL.at/' + (id('ResultText').innerHTML.split('/'))[1])
     elementFadeOut('twitterFrame')
+    elementFadeIn('ResultFrame')
   })
   function twitterGenerate(twt){
     if(mobileCheck()){
