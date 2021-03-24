@@ -14,7 +14,7 @@
 <link href='/resources/master.css' rel='stylesheet' type='text/css'>
 <script src='/resources/master.js'></script>
 <div style='display:block; position:absolute; background:#202020; color:white; overflow-X:hidden; overflow-Y:auto;'>
-  <video id='loadVideo' style='display:none;'></video>
+  <video id='loadVideo' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
   <video id='backgroundVideo1' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
   <video id='backgroundVideo2' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
   <div R='min-height:500px;'>
@@ -168,37 +168,35 @@
     
       id('loadVideo').addEventListener('canplaythrough', function(){
         if(videoLaunched == false){
-          video1Time = id('backgroundVideo1').currentTime
-          id('backgroundVideo1').src = id('loadVideo').src
-          id('backgroundVideo1').currentTime = video1Time
-          id('backgroundVideo1').play()
-          id('backgroundVideo1').playbackRate = 0.6
+          setVideo(1)
           elementFadeIn('backgroundVideo1',2000)
           videoLaunched = true
           setInterval(function(){
-            playVideo(1)
+            replayVideo(1)
           },22000)
           setTimeout(function(){
-            playVideo(2)
+            setVideo(2)
           setInterval(function(){
-              playVideo(2)
+              replayVideo(2)
             },22000)
           },11000)
         }else{
-          video1Time = id('backgroundVideo1').currentTime
-          id('backgroundVideo1').src = id('loadVideo').src
-          id('backgroundVideo1').currentTime = video1Time
-          id('backgroundVideo1').play()
-          id('backgroundVideo1').playbackRate = 0.6
-          video2Time = id('backgroundVideo2').currentTime
-          id('backgroundVideo2').src = id('loadVideo').src
-          id('backgroundVideo2').currentTime = video2Time
-          id('backgroundVideo2').play()
-          id('backgroundVideo2').playbackRate = 0.6
+          id('loadVideo').style.display = 'flex'
+          id('backgroundVideo' + numb).currentTime = 4.5
+          id('loadVideo').play()
+          id('backgroundVideo' + numb).playbackRate = 0.6
+          setVideo(1)
+          setVideo(2)
         }
       })
-
-    function playVideo(numb){
+    function setVideo(numb){
+      video1Time = id('backgroundVideo' + numb).currentTime
+      id('backgroundVideo' + numb).src = id('loadVideo').src
+      id('backgroundVideo' + numb).currentTime = video1Time
+      id('backgroundVideo' + numb).play()
+      id('backgroundVideo' + numb).playbackRate = 0.6
+    }
+    function replayVideo(numb){
       id('backgroundVideo' + numb).currentTime = 4.5
       id('backgroundVideo' + numb).play()
       id('backgroundVideo' + numb).playbackRate = 0.6
