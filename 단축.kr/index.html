@@ -132,6 +132,7 @@
   })
   window.addEventListener('DOMContentLoaded', function(){
     videoLaunched = false
+    loadedSrc = ''
     
     resizeResponsiveElements()
     resizeVideo()
@@ -148,26 +149,26 @@
         vidHeight = document.body.offsetHeight
       }
       if(document.body.offsetHeight / 3 * 2.5 < document.body.offsetWidth){
-        if(vidHeight < 600 && id('loadVideo').src.indexOf('horizontal') == -1){
+        if(vidHeight < 600 && loadedSrc.indexOf('horizontal') == -1){
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
-        }else if(600 <= vidHeight && vidHeight < 720 && id('loadVideo').src.indexOf('horizontal600') + id('loadVideo').src.indexOf('horizontal720') + id('loadVideo').src.indexOf('horizontalMax') == -3){
+        }else if(600 <= vidHeight && vidHeight < 720 && loadedSrc.indexOf('horizontal600') + loadedSrc.indexOf('horizontal720') + loadedSrc.indexOf('horizontalMax') == -3){
           id('loadVideo').src = '/resources/videos/horizontal600p.mp4'
-        }else if(720 <= vidHeight && vidHeight < 900 && id('loadVideo').src.indexOf('horizontal720') + id('loadVideo').src.indexOf('horizontalMax') == -2){
+        }else if(720 <= vidHeight && vidHeight < 900 && loadedSrc.indexOf('horizontal720') + loadedSrc.indexOf('horizontalMax') == -2){
           id('loadVideo').src = '/resources/videos/horizontal720p.mp4'
-        }else if(900 <= vidHeight && id('loadVideo').src.indexOf('horizontalMax') == -1){
+        }else if(900 <= vidHeight && loadedSrc.indexOf('horizontalMax') == -1){
           id('loadVideo').src = '/resources/videos/horizontalMax.mp4'
         }else{
           return
         }
         videoLaunched = false
       }else{
-        if(vidHeight < 600 && id('loadVideo').src == ''){
+        if(vidHeight < 600 && loadedSrc == ''){
           id('loadVideo').src = '/resources/videos/vertical480p.mp4'
-        }else if(600 <= vidHeight && vidHeight < 720 && id('loadVideo').src.indexOf('600') + id('loadVideo').src.indexOf('720') + id('loadVideo').src.indexOf('Max') == -3 ){
+        }else if(600 <= vidHeight && vidHeight < 720 && loadedSrc.indexOf('600') + loadedSrc.indexOf('720') + loadedSrc.indexOf('Max') == -3 ){
           id('loadVideo').src = '/resources/videos/vertical600p.mp4'
-        }else if(720 <= vidHeight && vidHeight < 900 && id('loadVideo').src.indexOf('720') + id('loadVideo').src.indexOf('Max') == -2){
+        }else if(720 <= vidHeight && vidHeight < 900 && loadedSrc.indexOf('720') + loadedSrc.indexOf('Max') == -2){
           id('loadVideo').src = '/resources/videos/vertical720p.mp4'
-        }else if(900 <= vidHeight && id('loadVideo').src.indexOf('Max') == -1){
+        }else if(900 <= vidHeight && loadedSrc.indexOf('Max') == -1){
           id('loadVideo').src = '/resources/videos/verticalMax.mp4'
         }else{
           return
@@ -177,6 +178,7 @@
     }
     
       id('loadVideo').addEventListener('canplaythrough', function(){
+        loadedSrc = id('loadVideo').src
         if(videoLaunched == false){
           if(id('backgroundVideo1').src || id('backgroundVideo2').src){
             try{
@@ -205,7 +207,7 @@
         }
       })
     function setVideo(numb, startTime){
-      id('backgroundVideo' + numb).src = id('loadVideo').src
+      id('backgroundVideo' + numb).src = loadedSrc
       id('backgroundVideo' + numb).playbackRate = 0.6
       id('backgroundVideo' + numb).play()
       id('backgroundVideo' + numb).currentTime = startTime
