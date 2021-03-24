@@ -148,7 +148,7 @@
       }else{
         vidHeight = document.body.offsetHeight
       }
-      if(document.body.offsetHeight / 3 * 2.5 < document.body.offsetWidth){
+      /*if(document.body.offsetHeight / 3 * 2.5 < document.body.offsetWidth){*/
         if(vidHeight < 600 && loadedSrc.indexOf('horizontal') == -1){
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
         }else if(600 <= vidHeight && vidHeight < 720 && loadedSrc.indexOf('horizontal600') + loadedSrc.indexOf('horizontal720') + loadedSrc.indexOf('horizontalMax') == -3){
@@ -161,7 +161,7 @@
           return
         }
         videoLaunched = false
-      }else{
+      /*}else{
         if(vidHeight < 600 && loadedSrc == ''){
           id('loadVideo').src = '/resources/videos/vertical480p.mp4'
         }else if(600 <= vidHeight && vidHeight < 720 && loadedSrc.indexOf('600') + loadedSrc.indexOf('720') + loadedSrc.indexOf('Max') == -3 ){
@@ -174,7 +174,7 @@
           return
         }
         videoLaunched = false
-      }
+      }*/
     }
     
       id('loadVideo').addEventListener('canplaythrough', function(){
