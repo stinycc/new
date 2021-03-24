@@ -63,9 +63,9 @@
     <b id='alertText' R='font-size:w(4);' style='color:black;'></b>
   </div>
 </div>
-<div id='simpleResultFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
+<div id='ResultFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
   <div class='topCenterAlign' R='width:w(90); height:w(9); max-width:400px; max-height:40px;'>
-    <b id='simpleResultText' R='font-size:w(5);'></b>
+    <b id='ResultText' R='font-size:w(5);'></b>
   </div>
   <div R='width:w(90); height:w(45); max-width:400px; max-height:200px; border-radius:s(2.5);' style='background:white;'>
     <div R='height:h(90);'>
@@ -73,20 +73,27 @@
         <b R='margin-bottom:h(27.5); font-size:w(3.5); color:black;'>Result successfully copied to clipboard!</b>
       </div>
       <div R='height:h(100*2.75/10);'>
-        <div id='simpleResultTwitter' class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(29,161,242,.7);'>
+        <div id='ResultTwitter' class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(29,161,242,.7);'>
           <b R='font-size:w(4);'>Copy it to Twitter</b>
         </div>
       </div>
-      <div id='simpleResultRename' R='height:h(100*2.75/10);'>
+      <div id='ResultRename' R='height:h(100*2.75/10);'>
         <div class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(0,0,0,.4);'>
           <b R='font-size:w(4);'>Rename this link</b>
         </div>
       </div>
-      <div id='simpleResultClose' R='height:h(100*2.75/10);'>
+      <div id='ResultClose' R='height:h(100*2.75/10);'>
         <div class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(0,0,0,.7);'>
           <b R='font-size:w(4);'>Close</b>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div id='customDomainFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
+  <div R='width:w(90); height:w(45); max-width:400px; max-height:200px; border-radius:s(2.5);' style='background:white;'>
+    <div R='height:h(90);'>
+      
     </div>
   </div>
 </div>
@@ -544,14 +551,14 @@ document.head.innerHTML+=expandAnimation
       document.execCommand("copy");
       id('inputForKeyboard').blur()
       elementFadeOut('alertFrame')
-      elementFadeIn('simpleResultFrame')
-      id('simpleResultText').innerHTML = shortenedUrl
+      elementFadeIn('ResultFrame')
+      id('ResultText').innerHTML = shortenedUrl
   }
 
-  id('simpleResultTwitter').addEventListener('click',function(){
+  id('ResultTwitter').addEventListener('click',function(){
     var twitterAllowed, twitterCheck
     twitterAllowed = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890./:'
-    twitterCheck = id('simpleResultText').innerHTML
+    twitterCheck = id('ResultText').innerHTML
     for (i in twitterAllowed){
       twitterCheck = twitterCheck.replaceAll(twitterAllowed[i],'')
     }
@@ -561,11 +568,11 @@ document.head.innerHTML+=expandAnimation
       //서브유에랄필요할때
     }
   })
-  id('simpleResultRename').addEventListener('click',function(){
-    uniqueShortenSuccess(id('simpleResultText').innerHTML.replace(id('simpleShortenDomain').innerHTML + '/'))
+  id('ResultRename').addEventListener('click',function(){
+    uniqueShortenSuccess((id('ResultText').innerHTML.split('/'))[1])
   })
-  id('simpleResultClose').addEventListener('click',function(){
-    elementFadeOut('simpleResultFrame')
+  id('ResultClose').addEventListener('click',function(){
+    elementFadeOut('ResultFrame')
   })
   function uniqueShortenSuccess(shortCode) {
       alert(shortCode)
