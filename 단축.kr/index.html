@@ -223,9 +223,11 @@
         if(id('backgroundVideo2').style.display == 'none'){
           elementFadeIn('backgroundVideo2',1000,'reset')
           setVideo(2,4.5)
+          console.log('fin')
         }else{
           elementFadeOut('backgroundVideo2',1000,'reset')
           setVideo(1,4.5)
+          console.log('fout')
         }
       }
     }
