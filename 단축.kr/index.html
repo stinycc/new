@@ -63,27 +63,27 @@
     <b id='alertText' R='font-size:w(4);' style='color:black;'></b>
   </div>
 </div>
-<div id='simpleResultFrame' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
-  <div R='width:w(80); height:w(50); max-width:400px; max-height:250px; border-radius:s(2.5);' style='position:absolute; background:white;'>
-    <div R='height:h(95);'>
-      <div R='height:h(100*2.75/10);'>
-        <span R='margin:0 0 h(5) 0; font-size:w(4);'>단축.kr/dk32kz</span>
-        <b R='font-size:w(4);'>Result successfully copied to clipboard!</b>
+<div id='simpleResultFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
+  <div R='width:w(90); height:w(40); max-width:385px; max-height:175px; border-radius:s(2.5);' style='background:white;'>
+    <div R='height:h(90);'>
+      <div R='height:h(100*3.5/10);'>
+        <span id='simpleResultText' R='margin:0 0 h(10) 0; font-size:w(3.5);' style='border-bottom:black .5px solid;'>단축.kr/dk32kz</span>
+        <b R='width:w(100); text-align:center; font-size:w(3.5);'>Result successfully copied to clipboard!</b>
       </div>
-      <div R='height:h(100*2.5/10);'>
+      <div R='height:h(100*3.25/10);'>
         <div R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(29,161,242,.7); color:white;'>
-          <b R='font-size:w(4.5);'>Copy it to Twitter</b>
+          <b R='font-size:w(4);'>Copy it to Twitter</b>
         </div>
       </div>
-      <div R='height:h(100*2.5/10);'>
+      <div R='height:h(100*3.25/10);'>
         <div R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(0,0,0,.7); color:white;'>
-          <b R='font-size:w(4.5);'>Rename this link</b>
+          <b R='font-size:w(4);'>Rename this link</b>
         </div>
-      </div>
-      <div class='bottomCenterAlign' R='height:h(100*1.75/10);'>
-        <b R='border-bottom:black 1.5px solid; font-size:w(4.5);'>Close</b>
       </div>
     </div>
+  </div>
+  <div class='bottomCenterAlign' R='width:w(90); height:w(7.5); max-width:385px; max-height:32px;'>
+    <b R='border-bottom:white 1.5px solid; font-size:w(4); color:white;'>Close</b>
   </div>
 </div>
 <script>
