@@ -51,10 +51,14 @@
     </div>
     <div R='height:h(100*3/9); min-width:300px; max-width:400px; min-height:67.5px; bottom:0;' style='position:absolute; opacity:0.75;'>
       <div R='height:h(15); font-Size:w(3);'>
-        <b id='tipTitle1'>No need to copy/paste</b>
+        <b id='tipTitle1' style='display:none;'>No need to copy/paste</b>
+        <b id='tipTitle2' style='display:none;'>Want to change from bit.ly?</b>
+        <b id='tipTitle3' style='display:none;'>Want to change from cutt.ly?</b>
       </div>
       <span R='font-Size:w(2.75); letter-spacing:w(-0.1);' style='border-bottom:white 0.5px solid; color:white;'>
-        <a id='tipContent1'><b id='tipDomain' R='font-size:150%'></b>(https://)www.LongLink.com/Example</a>
+        <a id='tipContent1' style='display:none;'><b id='tipDomain' R='font-size:150%'></b>(https://)www.LongLink.com/Example</a>
+        <a id='tipContent2' style='display:none;'>bit.ly/Ex4mp1e = name.it.yourself.sTiny.link<b R='font-size:150%'>b:</b>Ex4mp1e</a>
+        <a id='tipContent3' style='display:none;'>cutt.ly/Ex4mp1e = name.it.yourself.sTiny.link<b R='font-size:150%'>c:</b>Ex4mp1e</a>
       </span>
     </div>
   </div>
@@ -252,7 +256,25 @@
           setVideo(1, 4.5)
       }
   }
-
+  
+  tipNumb = 1
+  function tipTextAnimation(){
+      setTimeout(function(){
+          elementFadeIn('tipTitle' + tipNumb, 1000)
+          elementFadeIn('tipContent' + tipNumb, 1000)
+      },2500)
+      setTimeout(function(){
+          elementFadeOut('tipTitle' + tipNumb, 1000)
+          elementFadeOut('tipContent' + tipNumb, 1000)
+          if(tipNumb == 3){
+              tipNumb = 1
+          }else{
+              tipNumb += 1
+          }
+          tipTextAnimation()
+      },7500)
+  }
+  
   if (getParameter('from')) {
       id('titleSubLevel').innerHTML = getParameter('from')
       id('simpleShortenDomain').innerHTML = 'sTiny.link'
