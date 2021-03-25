@@ -693,6 +693,7 @@
   }
 
   function uniqueShortenSuccess(shortCode) {
+      id('inputForKeyboard').blur()
       shortCodeSave = shortCode
       localStorage.setItem(id('inputForUrl').value, shortCode);
       elementFadeOut('alertFrame')
