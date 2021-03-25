@@ -382,11 +382,11 @@
 
   window.addEventListener('keydown', function() {
       if (event.keyCode == 13) {
-          if(id('customFrame').style.display == 'flex'){
+          if(id('customFrame').style.opacity > 0.75){
               id('customInput').focus()
-          }else if(id('resultFrame').style.display == 'flex'){
+          }else if(id('resultFrame').style.opacity > 0.75){
               //nothing
-          }else if(id('twitterFrame').style.display == 'flex'){
+          }else if(id('twitterFrame').style.opacity > 0.75){
               id('twitterYes').click()
           }else{
               id('inputForPlaceholder').focus()
