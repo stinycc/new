@@ -702,7 +702,7 @@
       }
       if(id('customInput').value.charAt(id('customInput').value.length - 1) != '.'){
           id('customInput').value = id('customInput').value + '.'
-          el.selectionStart = el.selectionEnd = el.value.length - 1
+          id('customInput').selectionStart = id('customInput').selectionEnd = id('customInput').value.length - 1
       }
       resetCustomText()
   })
