@@ -693,7 +693,7 @@
       resetCustomText()
   }
   
-  id('customInput').addEventListener('focus', function() {
+  id('customInput').addEventListener('click', function() {
     setTimeout(function(){
       if(id('customInput').selectionStart == id('customInput').value.length){
         id('customInput').selectionStart = id('customInput').selectionEnd = id('customInput').value.length - 1
