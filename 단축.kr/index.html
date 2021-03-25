@@ -843,7 +843,9 @@
       elementFadeOut('alertFrame')
       elementFadeOut('customFrame')
       elementFadeIn('resultFrame')
-      customAlert('The link is copied to clipboard!', 2000)
+      setTimeout(function(){
+          customAlert('The link is copied to clipboard!', 2000)
+      },500)
       id('ResultText').innerHTML = resultLink
   }
 </script>
