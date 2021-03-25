@@ -616,7 +616,7 @@
           urlHostname = (protocolRemoved.split('.'))[0]
       }
       //valid characters?
-      var unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', '`', "'", ' ', '&nbsp;', ':', '/']
+      var unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', '`', "'", ' ', ' ', ':', '/']
       for (var i = 0; i < unvalidCharacter.length; i++) {
           if (urlHostname.indexOf(unvalidCharacter[i]) != -1) {
               customAlert('Wrong url format', 2000)
