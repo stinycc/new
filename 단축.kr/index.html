@@ -829,6 +829,7 @@
     }
   })
   function showResultframe(resultLink){
+      customAlert('Result is successfully copied to clipboard!',2000)
       id('inputForKeyboard').value = resultLink
       id('inputForKeyboard').select()
       document.execCommand("copy")
