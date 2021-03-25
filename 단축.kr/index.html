@@ -600,7 +600,7 @@
           urlHostname = (protocolRemoved.split('.'))[0]
       }
       //valid characters?
-      unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', '`', "'", ' ', ':', '/']
+      var unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', '`', "'", ' ', ':', '/']
       for (var i = 0; i < unvalidCharacter.length; i++) {
           if (urlHostname.indexOf(unvalidCharacter[i]) != -1) {
               customAlert('Wrong url format', 2000)
@@ -692,8 +692,21 @@
       }
       resetCustomText()
   }
-
+  
+  id('sTinyLinkInput').addEventListener("input", function() {
+    id('sTinyLinkInput').value = id('sTinyLinkInput').value.replaceAll(' ','.')
+    id('sTinyLinkInput').value = id('sTinyLinkInput').value.replaceAll('..','.')
+    for (i in unvalidCharacter){
+      id('sTinyLinkInput').value = id('sTinyLinkInput').value.replaceAll(unvalidCharacter[i],'')
+    }
+  })
   id('customInput').addEventListener('input', function() {
+      var unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', ':', '/', '`', "'", ' ', '（', '）', '⁽', '⁾', '₍', '₎', '˙', '｡', '＼']
+      id('customInput').value = id('customInput').value.replaceAll(' ','.')
+      id('customInput').value = id('customInput').value.replaceAll('..','.')
+      for (i in unvalidCharacter){
+        id('customInput').value = id('customInput').value.replaceAll(unvalidCharacter[i],'')
+      }
       resetCustomText()
   })
   id('customSelect').addEventListener('change', function() {
