@@ -145,9 +145,9 @@
       ['🧀Emoji.Overload🐭', 'littl.cc']
   ]
   buttonOnFocus = 'none'
-  optionPreset = '<option value="placeNumb1">.placeNumb2</option>'
+  optionPreset = '<option value="placeNumb1">placeNumb1</option>'
   for (i in domainList) {
-      id('customSelect').innerHTML += optionPreset.replace('placeNumb1', domainList[i]).replace('placeNumb2', domainList[i])
+      id('customSelect').innerHTML += optionPreset.replaceAll('placeNumb1', domainList[i])
   }
   videoLaunched = false
   loadedSrc = ''
@@ -686,6 +686,9 @@
       localStorage.setItem(id('inputForUrl').value, shortCode);
       elementFadeOut('alertFrame')
       elementFadeIn('customFrame')
+      if (getParameter('from')) {
+          
+      }
   }
 
   id('customInput').addEventListener('input', function() {
