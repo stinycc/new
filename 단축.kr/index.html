@@ -383,7 +383,7 @@
   window.addEventListener('keydown', function() {
       if (event.keyCode == 13) {
           if(id('customFrame').style.display == 'flex'){
-              id('customInput').click()
+              id('customInput').focus()
           }else if(id('resultFrame').style.display == 'flex'){
               //nothing
           }else if(id('twitterFrame').style.display == 'flex'){
