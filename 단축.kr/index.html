@@ -822,7 +822,7 @@
   window.addEventListener('message',function(e){
     if(e.data=='success'){
       clearTimeout(TestingAlertTimer1)
-      testedLink = (id('testIframe').src.splice(-1,10).split('//'))[1]
+      testedLink = (id('testIframe').src.slice(0,-10).split('//'))[1]
       localStorage.setItem(testedLink, 'success');
       showResultframe(testedLink)
     }
