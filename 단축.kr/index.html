@@ -85,7 +85,7 @@
     </div>
   </div>
 </div>
-<div id='customDomainFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
+<div id='customFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
   <div R='width:w(90); height:w(45); max-width:400px; max-height:200px; border-radius:s(2.5);' style='background:white;'>
     <div R='height:h(90);'>
       
@@ -598,7 +598,9 @@ document.head.innerHTML+=expandAnimation
   }
 
   function uniqueShortenSuccess(shortCode) {
-      alert(shortCode)
+      localStorage.setItem(id('inputForUrl').value, shortCode);
+      elementFadeOut('alertFrame')
+      elementFadeIn('customFrame')
   }
   
   id('ResultTwitter').addEventListener('click',function(){
@@ -611,7 +613,7 @@ document.head.innerHTML+=expandAnimation
     if (twitterCheck == ''){
       twitterGenerate('%F0%9F%94%97 ' + id('ResultText').innerHTML)
     }else{
-      elementFadeOut('ResultFrame')
+      elementFadeOut('ResultFrame',1000)
       elementFadeIn('twitterFrame')
     }
   })
@@ -622,12 +624,12 @@ document.head.innerHTML+=expandAnimation
     elementFadeOut('ResultFrame')
   })
   id('twitterNo').addEventListener('click',function(){
-    elementFadeOut('twitterFrame')
+    elementFadeOut('twitterFrame',1000)
     elementFadeIn('ResultFrame')
   })
   id('twitterYes').addEventListener('click',function(){
     twitterGenerate('%F0%9F%94%97 ' + id('ResultText').innerHTML + '%0A' + '%F0%9F%A5%88 SubURL.at/' + (id('ResultText').innerHTML.split('/'))[1])
-    elementFadeOut('twitterFrame')
+    elementFadeOut('twitterFrame',1000)
     elementFadeIn('ResultFrame')
     customAlert('Loading Twitter...',3000)
   })
