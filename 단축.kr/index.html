@@ -798,10 +798,10 @@
               iframeLoaded = -1
             }
             arabicCharacter = /[\u0600-\u06FF]/;
-            if(arabicCharacter.test(testLinkSave) || testLinkSave.indexOf('ﻌ') != -1){
+            if(arabicCharacter.test(id('customText').innerHTML) || id('customText').innerHTML.indexOf('ﻌ') != -1){
               alert('Arabic alphabet detected! Arabic alphabets are not allowed to be used with most of the non-arabic characters.')
             }
-            if(testLinkSave.length > 50){
+            if(id('customText').innerHTML.length > 50){
               alert('The link is at least 50 characters long. It could be the cause of the error.')
             }
           }
