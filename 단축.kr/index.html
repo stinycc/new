@@ -779,7 +779,7 @@
           return
       }
       iframeLoaded = 0
-      id('testIframe').src = '//' + id('customText').innerHTML.replaceAll('.','') + '.sTiny.link' + '?save=' + id('customText').innerHTML + '?test=true'
+      id('testIframe').src = '//' + id('customInput').value.replaceAll('.','') + '.sTiny.link' + '?save=' + id('customText').innerHTML + '?test=true'
       testCount = 5
       customAlert('Testing the link... ' + testCount, 1200)
       TestingAlertAnimation()
