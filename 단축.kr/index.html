@@ -146,8 +146,8 @@
   ]
   buttonOnFocus = 'none'
   optionPreset = '<option value="placeNumb1">.placeNumb2</option>'
-  for (i in domains) {
-      id('customSelect').innerHTML += optionPreset.replace('placeNumb1', domains[i]).replace('placeNumb2', domains[i])
+  for (i in domainList) {
+      id('customSelect').innerHTML += optionPreset.replace('placeNumb1', domainList[i]).replace('placeNumb2', domainList[i])
   }
   videoLaunched = false
   loadedSrc = ''
