@@ -134,44 +134,55 @@
 </div>
 <script>
   domainList = ['sTiny.link', 'littl.cc', '단축.kr']
-  titleList = [['Jungkookie','sTiny.link'],['ㅇ<아 ㅁ<미 ㅁ<마<만 ㅇ<으<의','단축.kr'],['n<にh<ほｎ<ん h<はsh<<しr<ら n<の = <<<<<<<! 二-本-柱-の =','短縮.cc'],['Ju=<<鞠 Jing=<<<<婧 Yi=<<禕 De=<<的','SubURL.at'],['Bitcoiner','sTiny.link'],['ㅅ<서 ㄱ<가<강 인=<人 ㅇ<으<의','단축.kr'],['t<とうw<わいs<す = <<<<<! ト-ゥ-ワ-イ-ス =','Fans.ms'],['🧀Emoji.Overload🐭','littl.cc']]
+  titleList = [
+      ['Jungkookie', 'sTiny.link'],
+      ['ㅇ<아 ㅁ<미 ㅁ<마<만 ㅇ<으<의', '단축.kr'],
+      ['n<にh<ほｎ<ん h<はsh<<しr<ら n<の = <<<<<<<! 二-本-柱-の =', '短縮.cc'],
+      ['Ju=<<鞠 Jing=<<<<婧 Yi=<<禕 De=<<的', 'SubURL.at'],
+      ['Bitcoiner', 'sTiny.link'],
+      ['ㅅ<서 ㄱ<가<강 인=<人 ㅇ<으<의', '단축.kr'],
+      ['t<とうw<わいs<す = <<<<<! ト-ゥ-ワ-イ-ス =', 'Fans.ms'],
+      ['🧀Emoji.Overload🐭', 'littl.cc']
+  ]
   buttonOnFocus = 'none'
-  
+  optionPreset = '<option value="placeNumb1">.placeNumb2</option>'
+  for (i in domains) {
+      id('customSelect').innerHTML += optionPreset.replace('placeNumb1', domains[i]).replace('placeNumb2', domains[i])
+  }
+  videoLaunched = false
+  loadedSrc = ''
+
   window.addEventListener('touchstart', function() {
-    id('simpleShortenButton').className = 'noDrag'
-    id('customShortenButton').className = 'noDrag'
+      id('simpleShortenButton').className = 'noDrag'
+      id('customShortenButton').className = 'noDrag'
   })
-  window.addEventListener('DOMContentLoaded', function(){
-    videoLaunched = false
-    loadedSrc = ''
-    
-    resizeResponsiveElements()
-    resizeVideo()
-    window.addEventListener('resize', function(){
+  resizeResponsiveElements()
+  resizeVideo()
+  window.addEventListener('resize', function() {
       resizeResponsiveElements()
       resizeVideo()
-    })
+  })
 
-    function resizeVideo(){
+  function resizeVideo() {
       var vidHeight
-      if(document.body.offsetHeight < id('loadVideo').offsetHeight){
-        vidHeight = id('loadVideo').offsetHeight
-      }else{
-        vidHeight = document.body.offsetHeight
+      if (document.body.offsetHeight < id('loadVideo').offsetHeight) {
+          vidHeight = id('loadVideo').offsetHeight
+      } else {
+          vidHeight = document.body.offsetHeight
       }
       /*if(document.body.offsetHeight / 3 * 2.5 < document.body.offsetWidth){*/
-        if(vidHeight < 480 && loadedSrc.indexOf('horizontal') == -1){
+      if (vidHeight < 480 && loadedSrc.indexOf('horizontal') == -1) {
           id('loadVideo').src = '/resources/videos/horizontal480p.mp4'
-        }else if(480 <= vidHeight && vidHeight < 600 && loadedSrc.indexOf('horizontal600') + loadedSrc.indexOf('horizontal720') + loadedSrc.indexOf('horizontalMax') == -3){
+      } else if (480 <= vidHeight && vidHeight < 600 && loadedSrc.indexOf('horizontal600') + loadedSrc.indexOf('horizontal720') + loadedSrc.indexOf('horizontalMax') == -3) {
           id('loadVideo').src = '/resources/videos/horizontal600p.mp4'
-        }else if(600 <= vidHeight && vidHeight < 720 && loadedSrc.indexOf('horizontal720') + loadedSrc.indexOf('horizontalMax') == -2){
+      } else if (600 <= vidHeight && vidHeight < 720 && loadedSrc.indexOf('horizontal720') + loadedSrc.indexOf('horizontalMax') == -2) {
           id('loadVideo').src = '/resources/videos/horizontal720p.mp4'
-        }else if(720 <= vidHeight && loadedSrc.indexOf('horizontalMax') == -1){
+      } else if (720 <= vidHeight && loadedSrc.indexOf('horizontalMax') == -1) {
           id('loadVideo').src = '/resources/videos/horizontalMax.mp4'
-        }else{
+      } else {
           return
-        }
-        videoLaunched = false
+      }
+      videoLaunched = false
       /*}else{
         if(vidHeight < 600 && loadedSrc == ''){
           id('loadVideo').src = '/resources/videos/vertical480p.mp4'
@@ -186,488 +197,507 @@
         }
         videoLaunched = false
       }*/
-    }
-    
-      id('loadVideo').addEventListener('canplaythrough', function(){
-        loadedSrc = id('loadVideo').src
-        if(videoLaunched == false){
-          setTimeout(function(){
-            id('loadVideo').src = loadedSrc.replace('vertical','horizontal')
-          },22000)
-          if(id('backgroundVideo1').src || id('backgroundVideo2').src){
-            try{
-              clearInterval(launchVideoInterval1)
-              clearTimeout(launchVideoTimeout)
-              clearInterval(launchVideoInterval2)
-            }catch{}
-            elementFadeOut('backgroundVideo2',2000,'reset')
-            setVideo(1,5)
-            id('backgroundVideo2').currentTime = 5
-          }else{
-            setVideo(1,0)
-            setVideo(2,4.5)
+  }
+
+  id('loadVideo').addEventListener('canplaythrough', function() {
+      loadedSrc = id('loadVideo').src
+      if (videoLaunched == false) {
+          setTimeout(function() {
+              id('loadVideo').src = loadedSrc.replace('vertical', 'horizontal')
+          }, 22000)
+          if (id('backgroundVideo1').src || id('backgroundVideo2').src) {
+              try {
+                  clearInterval(launchVideoInterval1)
+                  clearTimeout(launchVideoTimeout)
+                  clearInterval(launchVideoInterval2)
+              } catch {}
+              elementFadeOut('backgroundVideo2', 2000, 'reset')
+              setVideo(1, 5)
+              id('backgroundVideo2').currentTime = 5
+          } else {
+              setVideo(1, 0)
+              setVideo(2, 4.5)
           }
-          elementFadeIn('backgroundVideo1',1000,'reset')
+          elementFadeIn('backgroundVideo1', 1000, 'reset')
           videoLaunched = true
-          launchVideoInterval1 = setInterval(function(){
-            replayVideo(1)
-          },22000)
-          launchVideoTimeout = setTimeout(function(){
-            replayVideo(2)
-            launchVideoInterval2 = setInterval(function(){
+          launchVideoInterval1 = setInterval(function() {
+              replayVideo(1)
+          }, 22000)
+          launchVideoTimeout = setTimeout(function() {
               replayVideo(2)
-            },22000)
-          },11000)
-        }
-      })
-    function setVideo(numb, startTime){
-      if(id('backgroundVideo' + numb).src != loadedSrc){
-        id('backgroundVideo' + numb).src = loadedSrc
+              launchVideoInterval2 = setInterval(function() {
+                  replayVideo(2)
+              }, 22000)
+          }, 11000)
+      }
+  })
+
+  function setVideo(numb, startTime) {
+      if (id('backgroundVideo' + numb).src != loadedSrc) {
+          id('backgroundVideo' + numb).src = loadedSrc
       }
       id('backgroundVideo' + numb).playbackRate = 0.6
       id('backgroundVideo' + numb).play()
       id('backgroundVideo' + numb).currentTime = startTime
-    }
-    function replayVideo(numb){
-      if(id('backgroundVideo2').style.display == 'none'){
-        elementFadeIn('backgroundVideo2',10000,'reset')
-        setVideo(2,4.5)
-      }else{
-        elementFadeOut('backgroundVideo2',10000,'reset')
-        setVideo(1,4.5)
+  }
+
+  function replayVideo(numb) {
+      if (id('backgroundVideo2').style.display == 'none') {
+          elementFadeIn('backgroundVideo2', 10000, 'reset')
+          setVideo(2, 4.5)
+      } else {
+          elementFadeOut('backgroundVideo2', 10000, 'reset')
+          setVideo(1, 4.5)
       }
-    }
-    
-    pathname = decodeURIComponent(location.pathname.replaceAll('/',''))
-    if(getParameter('from')){
+  }
+
+  pathname = decodeURIComponent(location.pathname.replaceAll('/', ''))
+  if (getParameter('from')) {
       id('titleSubLevel').innerHTML = getParameter('from')
       id('simpleShortenDomain').innerHTML = 'sTiny.link'
-    }else{
+  } else {
       id('titleSubLevel').innerHTML = 'Welcome.to.'
       id('simpleShortenDomain').innerHTML = pathname
-    }
-    id('titleTopLevel').innerHTML = pathname
-    id('tipDomain').innerHTML = pathname + '/'
-    
-expandAnimation=`
-<style>
-  @keyframes expand {
-    0% {
-      width:0px;
-    }
-    100% {
-      width:` + id('titleSubLevel').offsetWidth + `px;
-    }
   }
-</style>
-`
-document.head.innerHTML+=expandAnimation
-    
-    id('titleSubLevel').style.display = 'none'
-    id('titleSubLevel').style.opacity = 0
+  id('titleTopLevel').innerHTML = pathname
+  id('tipDomain').innerHTML = pathname + '/'
 
-    setTimeout(function(){
-      animation('titleSubLevel','expand 1.5s both')
-      id('titleSubLevel').style.display = 'flex'
-      setTimeout(function(){
-        elementFadeIn('titleSubLevel',3000)
-      },2000)
-    },1500)
-    
-    titleCount = Math.floor(Math.random() * 8)
-    setTimeout(function(){
-      titleAnimation()
-    },12500)
-    function titleAnimation(){
-      deletingAnimation()
-      function subLevelAnimation(){
-        if(subLevelCount == domainPickedSubLevel.length){
-          id('titleSubLevel').innerHTML += '.'
-          setTimeout(function(){
-            deletingAnimation()
-          },9000)
-          return
-        }
-        letterPicked = domainPickedSubLevel[subLevelCount]
-        if(letterPicked == '!'){
-          elementFadeIn('titleSubLevel','reset')
-          subLevelCount += 1
-          subLevelAnimation()
-        }else if(letterPicked == '<'){
-          id('titleSubLevel').innerHTML = id('titleSubLevel').innerHTML.slice(0,-1)
-          subLevelCount += 1
-          subLevelAnimation()
-        }else if(letterPicked == '='){
-          subLevelCount += 1
-          setTimeout(function(){
-            subLevelAnimation()
-          },150)
-        }else{
-          if(letterPicked != '-'){
-            id('titleSubLevel').innerHTML += letterPicked
-          }else{
-            id('titleSubLevel').innerHTML += domainPickedSubLevel[subLevelCount+1]
-            subLevelCount += 1
-          }
-          subLevelCount += 1
-          if(domainPickedSubLevel[subLevelCount] == '-'){
-            subLevelAnimation()
-          }else{
-            setTimeout(function(){
-              subLevelAnimation()
-            },150)
-          }
-        }
+  expandAnimation = `
+  <style>
+    @keyframes expand {
+      0% {
+        width:0px;
       }
-      function deletingAnimation(){
-        if(id('titleSubLevel').innerHTML){
-          id('titleSubLevel').innerHTML = id('titleSubLevel').innerHTML.slice(0,-1)
-          setTimeout(function(){
-            deletingAnimation()
-          },100)
-        }else{
-          if(titleCount == 7){
-            titleCount = 0
-          }else{
-            titleCount += 1
-          }
-          domainPicked = titleList[titleCount]
-          domainPickedTopLevel = domainPicked[1]
-          domainPickedSubLevel = domainPicked[0].replaceAll(' ','')
-          topLevelCount = titleCount
-          setTimeout(function(){
-            topLevelAnimation()
-          },2000)
-          setTimeout(function(){
-            subLevelCount = 0
-            subLevelAnimation()
-          },7000)
-        }
-      }
-      function topLevelAnimation(){
-        if(topLevelCount == 7){
-          topLevelCount = 0
-        }else{
-          topLevelCount += 1
-        }
-        if(topLevelCount == (titleCount + 4) % 8){
-          id('titleTopLevel').innerHTML = titleList[titleCount][1]
-          elementFadeIn('titleTopLevel','reset')
-        }else{
-          id('titleTopLevel').innerHTML = titleList[topLevelCount][1]
-          elementFadeIn('titleTopLevel','reset')
-          setTimeout(function(){
-            topLevelAnimation()
-          },750)
-        }
+      100% {
+        width:` + id('titleSubLevel').offsetWidth + `px;
       }
     }
-    
-    window.addEventListener('keydown', function() {
-      if(event.keyCode == 13){
-        id('inputForPlaceholder').focus()
+  </style>
+  `
+  document.head.innerHTML += expandAnimation
+
+  id('titleSubLevel').style.display = 'none'
+  id('titleSubLevel').style.opacity = 0
+
+  setTimeout(function() {
+      animation('titleSubLevel', 'expand 1.5s both')
+      id('titleSubLevel').style.display = 'flex'
+      setTimeout(function() {
+          elementFadeIn('titleSubLevel', 3000)
+      }, 2000)
+  }, 1500)
+
+  titleCount = Math.floor(Math.random() * 8)
+  setTimeout(function() {
+      titleAnimation()
+  }, 12500)
+
+  function titleAnimation() {
+      deletingAnimation()
+
+      function subLevelAnimation() {
+          if (subLevelCount == domainPickedSubLevel.length) {
+              id('titleSubLevel').innerHTML += '.'
+              setTimeout(function() {
+                  deletingAnimation()
+              }, 9000)
+              return
+          }
+          letterPicked = domainPickedSubLevel[subLevelCount]
+          if (letterPicked == '!') {
+              elementFadeIn('titleSubLevel', 'reset')
+              subLevelCount += 1
+              subLevelAnimation()
+          } else if (letterPicked == '<') {
+              id('titleSubLevel').innerHTML = id('titleSubLevel').innerHTML.slice(0, -1)
+              subLevelCount += 1
+              subLevelAnimation()
+          } else if (letterPicked == '=') {
+              subLevelCount += 1
+              setTimeout(function() {
+                  subLevelAnimation()
+              }, 150)
+          } else {
+              if (letterPicked != '-') {
+                  id('titleSubLevel').innerHTML += letterPicked
+              } else {
+                  id('titleSubLevel').innerHTML += domainPickedSubLevel[subLevelCount + 1]
+                  subLevelCount += 1
+              }
+              subLevelCount += 1
+              if (domainPickedSubLevel[subLevelCount] == '-') {
+                  subLevelAnimation()
+              } else {
+                  setTimeout(function() {
+                      subLevelAnimation()
+                  }, 150)
+              }
+          }
       }
-    })
-    id('inputForPlaceholder').addEventListener('focus', function(){
+
+      function deletingAnimation() {
+          if (id('titleSubLevel').innerHTML) {
+              id('titleSubLevel').innerHTML = id('titleSubLevel').innerHTML.slice(0, -1)
+              setTimeout(function() {
+                  deletingAnimation()
+              }, 100)
+          } else {
+              if (titleCount == 7) {
+                  titleCount = 0
+              } else {
+                  titleCount += 1
+              }
+              domainPicked = titleList[titleCount]
+              domainPickedTopLevel = domainPicked[1]
+              domainPickedSubLevel = domainPicked[0].replaceAll(' ', '')
+              topLevelCount = titleCount
+              setTimeout(function() {
+                  topLevelAnimation()
+              }, 2000)
+              setTimeout(function() {
+                  subLevelCount = 0
+                  subLevelAnimation()
+              }, 7000)
+          }
+      }
+
+      function topLevelAnimation() {
+          if (topLevelCount == 7) {
+              topLevelCount = 0
+          } else {
+              topLevelCount += 1
+          }
+          if (topLevelCount == (titleCount + 4) % 8) {
+              id('titleTopLevel').innerHTML = titleList[titleCount][1]
+              elementFadeIn('titleTopLevel', 'reset')
+          } else {
+              id('titleTopLevel').innerHTML = titleList[topLevelCount][1]
+              elementFadeIn('titleTopLevel', 'reset')
+              setTimeout(function() {
+                  topLevelAnimation()
+              }, 750)
+          }
+      }
+  }
+
+  window.addEventListener('keydown', function() {
+      if (event.keyCode == 13) {
+          id('inputForPlaceholder').focus()
+      }
+  })
+  id('inputForPlaceholder').addEventListener('focus', function() {
       id('inputForPlaceholder').value = ' '
       elementFadeIn('domainWindow')
       id('inputForUrl').focus()
-      setTimeout(function(){
-        id('inputForPlaceholder').value = ''
-      },500)
-    })
-    id('inputForUrl').addEventListener('focus', function(){
-      try{clearTimeout(inputForUrlblurTimeout)}catch{}
-      setTimeout(function(){
-        id('scrollTargetBlock').scrollIntoView(true)
-      },500)
+      setTimeout(function() {
+          id('inputForPlaceholder').value = ''
+      }, 500)
+  })
+  id('inputForUrl').addEventListener('focus', function() {
+      try {
+          clearTimeout(inputForUrlblurTimeout)
+      } catch {}
+      setTimeout(function() {
+          id('scrollTargetBlock').scrollIntoView(true)
+      }, 500)
       elementFadeIn('domainWindow')
-    })
-    id('inputForUrl').addEventListener('blur', function(){
-      inputForUrlblurTimeout = setTimeout(function(){
-        buttonOnFocus = 'none'
-        if(id('inputForUrl').value == ''){
-          elementFadeOut('domainWindow')
-          setTimeout(function(){
-            simpleShortenButtonBlur()
-            customShortenButtonBlur()
-          },500)
-        }else{
-          simpleShortenButtonBlur()
-          customShortenButtonBlur()
-        }
-      },100)
-    })
-    id('inputForUrl').addEventListener('input', function(){
+  })
+  id('inputForUrl').addEventListener('blur', function() {
+      inputForUrlblurTimeout = setTimeout(function() {
+          buttonOnFocus = 'none'
+          if (id('inputForUrl').value == '') {
+              elementFadeOut('domainWindow')
+              setTimeout(function() {
+                  simpleShortenButtonBlur()
+                  customShortenButtonBlur()
+              }, 500)
+          } else {
+              simpleShortenButtonBlur()
+              customShortenButtonBlur()
+          }
+      }, 100)
+  })
+  id('inputForUrl').addEventListener('input', function() {
       id('scrollTargetBlock').scrollIntoView(true)
-      if(id('inputForUrl').value != ''){
-        id('erashAll').style.display = 'flex'
-      }else{
-        id('erashAll').style.display = 'none'
+      if (id('inputForUrl').value != '') {
+          id('erashAll').style.display = 'flex'
+      } else {
+          id('erashAll').style.display = 'none'
       }
-    })
-    id('erashAll').addEventListener('click', function(){
+  })
+  id('erashAll').addEventListener('click', function() {
       id('inputForUrl').focus()
       id('inputForUrl').value = ''
       id('erashAll').style.display = 'none'
       simpleShortenButtonBlur()
       customShortenButtonBlur()
-    })
-    id('inputForUrl').addEventListener('keydown', function(){
-      if(event.keyCode == 38 || event.keyCode == 40){
-        if(buttonOnFocus != 'simpleShortenButton'){
-          simpleShortenButtonFocus()
-          customShortenButtonBlur()
-          id('inputForUrl').blur()
-          setTimeout(function(){id('inputForUrl').focus()},1)
-        }else{
-          customShortenButtonFocus()
-          simpleShortenButtonBlur()
-          id('inputForUrl').blur()
-          setTimeout(function(){id('inputForUrl').focus()},1)
-        }
+  })
+  id('inputForUrl').addEventListener('keydown', function() {
+      if (event.keyCode == 38 || event.keyCode == 40) {
+          if (buttonOnFocus != 'simpleShortenButton') {
+              simpleShortenButtonFocus()
+              customShortenButtonBlur()
+              id('inputForUrl').blur()
+              setTimeout(function() {
+                  id('inputForUrl').focus()
+              }, 1)
+          } else {
+              customShortenButtonFocus()
+              simpleShortenButtonBlur()
+              id('inputForUrl').blur()
+              setTimeout(function() {
+                  id('inputForUrl').focus()
+              }, 1)
+          }
       }
-      if(event.keyCode == 13){
-        if(buttonOnFocus == 'simpleShortenButton'){
-          id('simpleShortenButton').click()
-        }else if(buttonOnFocus == 'customShortenButton'){
-          id('customShortenButton').click()
-        }else{
-          customShortenButtonFocus()
-        }
+      if (event.keyCode == 13) {
+          if (buttonOnFocus == 'simpleShortenButton') {
+              id('simpleShortenButton').click()
+          } else if (buttonOnFocus == 'customShortenButton') {
+              id('customShortenButton').click()
+          } else {
+              customShortenButtonFocus()
+          }
       }
-      if(event.keyCode == 27){
-        if(buttonOnFocus == 'none'){
-          id('inputForUrl').blur()
-        }else{
-          simpleShortenButtonBlur()
-          customShortenButtonBlur()
-          buttonOnFocus = 'none'
-        }
+      if (event.keyCode == 27) {
+          if (buttonOnFocus == 'none') {
+              id('inputForUrl').blur()
+          } else {
+              simpleShortenButtonBlur()
+              customShortenButtonBlur()
+              buttonOnFocus = 'none'
+          }
       }
-    })
-    id('simpleShortenButton').addEventListener('click', function(){
+  })
+  id('simpleShortenButton').addEventListener('click', function() {
       //for the click effect
       customShortenButtonBlur()
       simpleShortenButtonFocus()
       buttonOnFocus = 'none'
-      setTimeout(function(){
-        simpleShortenButtonBlur()
-      },100)
-      
+      setTimeout(function() {
+          simpleShortenButtonBlur()
+      }, 100)
+
       id('inputForKeyboard').focus()
-      if(id('inputForUrl').value){
-        urlIfShortenedResult = urlCheckIfShortened(id('inputForUrl').value)
-        if (urlIfShortenedResult){
-          simpleShortenSuccess(urlIfShortenedResult)
-        } else if (urlCheckifValid(id('inputForUrl').value)) {
-          customAlert('Loading...')
-          getJSONP('https://apiserver.wixsite.com/litn/_functions/eedo/setURL?longLink=' + urlProcessing(id('inputForUrl').value) + '&func=simpleShortenSuccess')
-        }
-      }else{
-        customAlert('Please enter a link first',2000)
-        setTimeout(function(){
-          id('inputForPlaceholder').focus()
-        },2000)
+      if (id('inputForUrl').value) {
+          urlIfShortenedResult = urlCheckIfShortened(id('inputForUrl').value)
+          if (urlIfShortenedResult) {
+              simpleShortenSuccess(urlIfShortenedResult)
+          } else if (urlCheckifValid(id('inputForUrl').value)) {
+              customAlert('Loading...')
+              getJSONP('https://apiserver.wixsite.com/litn/_functions/eedo/setURL?longLink=' + urlProcessing(id('inputForUrl').value) + '&func=simpleShortenSuccess')
+          }
+      } else {
+          customAlert('Please enter a link first', 2000)
+          setTimeout(function() {
+              id('inputForPlaceholder').focus()
+          }, 2000)
       }
-    })
-    id('customShortenButton').addEventListener('click', function(){
+  })
+  id('customShortenButton').addEventListener('click', function() {
       //for the click effect
       simpleShortenButtonBlur()
       customShortenButtonFocus()
       buttonOnFocus = 'none'
-      setTimeout(function(){
-        customShortenButtonBlur()
-      },100)
-      
+      setTimeout(function() {
+          customShortenButtonBlur()
+      }, 100)
+
       id('inputForKeyboard').focus()
-      setTimeout(function(){
-        id('inputForPlaceholder').focus()
-      },2000)
-      if(id('inputForUrl').value){
-        urlIfShortenedResult = urlCheckIfShortened(id('inputForUrl').value)
-        if (urlIfShortenedResult){
-          uniqueShortenSuccess(urlIfShortenedResult)
-        } else if (urlCheckifValid(id('inputForUrl').value)) {
-          customAlert('Loading...')
-          getJSONP('https://apiserver.wixsite.com/litn/_functions/eedo/setURL?longLink=' + urlProcessing(id('inputForUrl').value) + '&func=uniqueShortenSuccess')
-        }
-      }else{
-        customAlert('Please enter a link first',2000)
+      setTimeout(function() {
+          id('inputForPlaceholder').focus()
+      }, 2000)
+      if (id('inputForUrl').value) {
+          urlIfShortenedResult = urlCheckIfShortened(id('inputForUrl').value)
+          if (urlIfShortenedResult) {
+              uniqueShortenSuccess(urlIfShortenedResult)
+          } else if (urlCheckifValid(id('inputForUrl').value)) {
+              customAlert('Loading...')
+              getJSONP('https://apiserver.wixsite.com/litn/_functions/eedo/setURL?longLink=' + urlProcessing(id('inputForUrl').value) + '&func=uniqueShortenSuccess')
+          }
+      } else {
+          customAlert('Please enter a link first', 2000)
       }
-    })
-    function simpleShortenButtonFocus(){
+  })
+
+  function simpleShortenButtonFocus() {
       id('simpleShortenButton').style.background = 'gray'
       id('simpleShortenButton').style.color = 'white'
       buttonOnFocus = 'simpleShortenButton'
-    }
-    function simpleShortenButtonBlur(){
+  }
+
+  function simpleShortenButtonBlur() {
       id('simpleShortenButton').style.background = 'white'
       id('simpleShortenButton').style.color = 'black'
-    }
-    function customShortenButtonFocus(){
+  }
+
+  function customShortenButtonFocus() {
       id('customShortenButton').style.background = 'gray'
       id('customShortenButton').style.color = 'white'
       buttonOnFocus = 'customShortenButton'
-    }
-    function customShortenButtonBlur(){
+  }
+
+  function customShortenButtonBlur() {
       id('customShortenButton').style.background = 'white'
       id('customShortenButton').style.color = 'black'
-    }
-    function urlCheckIfShortened(url) {
+  }
+
+  function urlCheckIfShortened(url) {
       var protocolRemoved
-      if (url.indexOf('://') != -1){
-        protocolRemoved = (url.split('://'))[1]
+      if (url.indexOf('://') != -1) {
+          protocolRemoved = (url.split('://'))[1]
       } else {
-        protocolRemoved = url
+          protocolRemoved = url
       }
       if (protocolRemoved.toLowerCase().indexOf('bit.ly/') == 0) {
-        return protocolRemoved.replace(caseInsensitive('bit.ly/'),'b:')
+          return protocolRemoved.replace(caseInsensitive('bit.ly/'), 'b:')
       } else if (protocolRemoved.toLowerCase().indexOf('cutt.ly/') == 0) {
-        return protocolRemoved.replace(caseInsensitive('cutt.ly/'),'c:')
+          return protocolRemoved.replace(caseInsensitive('cutt.ly/'), 'c:')
       } else if (localStorage.getItem(id('inputForUrl').value)) {
-        return localStorage.getItem(id('inputForUrl').value)
+          return localStorage.getItem(id('inputForUrl').value)
       } else {
-        for(i in domainList){
-          if (protocolRemoved.toLowerCase().indexOf(domainList[i].toLowerCase()) == 0 && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '' && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '/') {
-            return (protocolRemoved.split(caseInsensitive(domainList[i] + '/')))[1]
+          for (i in domainList) {
+              if (protocolRemoved.toLowerCase().indexOf(domainList[i].toLowerCase()) == 0 && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '' && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '/') {
+                  return (protocolRemoved.split(caseInsensitive(domainList[i] + '/')))[1]
+              }
           }
-        }
       }
       return false
-    }
-    function urlCheckifValid(url) {
+  }
+
+  function urlCheckifValid(url) {
       var urlHostname
       var protocolRemoved
-      if (url.indexOf('://') != -1){
-        protocolRemoved = (url.split('://'))[1]
+      if (url.indexOf('://') != -1) {
+          protocolRemoved = (url.split('://'))[1]
       } else {
-        protocolRemoved = url
+          protocolRemoved = url
       }
       //our site?
-      for(i in domainList){
-        if (protocolRemoved.toLowerCase().indexOf(domainList[i].toLowerCase()) == 0) {
-          if((protocolRemoved.split(caseInsensitive(domainList[i])))[1] == '' || (protocolRemoved.split(caseInsensitive(domainList[i])))[1] == '/'){
-            customAlert('Welcome to ' + domainList[i] + ' 😘',2000)
-            return
+      for (i in domainList) {
+          if (protocolRemoved.toLowerCase().indexOf(domainList[i].toLowerCase()) == 0) {
+              if ((protocolRemoved.split(caseInsensitive(domainList[i])))[1] == '' || (protocolRemoved.split(caseInsensitive(domainList[i])))[1] == '/') {
+                  customAlert('Welcome to ' + domainList[i] + ' 😘', 2000)
+                  return
+              }
           }
-        }
       }
       //valid host name?
       if (protocolRemoved.split('.').length == 1) {
-        customAlert('Wrong url format',2000)
-        setTimeout(function(){
-          id('inputForPlaceholder').focus()
-        },2000)
-        return
+          customAlert('Wrong url format', 2000)
+          setTimeout(function() {
+              id('inputForPlaceholder').focus()
+          }, 2000)
+          return
       }
       if (url.indexOf('/') != -1) {
-        urlHostname = (protocolRemoved.split('/'))[0]
-      }else if(url.indexOf('?') != -1) {
-        urlHostname = (protocolRemoved.split('?'))[0]
-      }else if(url.indexOf('#') != -1) {
-        urlHostname = (protocolRemoved.split('#'))[0]
-      }else{
-        urlHostname = (protocolRemoved.split('.'))[0]
+          urlHostname = (protocolRemoved.split('/'))[0]
+      } else if (url.indexOf('?') != -1) {
+          urlHostname = (protocolRemoved.split('?'))[0]
+      } else if (url.indexOf('#') != -1) {
+          urlHostname = (protocolRemoved.split('#'))[0]
+      } else {
+          urlHostname = (protocolRemoved.split('.'))[0]
       }
       //valid characters?
       unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', '`', "'", ' ', ':', '/']
       for (var i = 0; i < unvalidCharacter.length; i++) {
-        if (urlHostname.indexOf(unvalidCharacter[i]) != -1) {
-            customAlert('Wrong url format',2000)
-            setTimeout(function(){
-              id('inputForPlaceholder').focus()
-            },2000)
-            return
-        }
+          if (urlHostname.indexOf(unvalidCharacter[i]) != -1) {
+              customAlert('Wrong url format', 2000)
+              setTimeout(function() {
+                  id('inputForPlaceholder').focus()
+              }, 2000)
+              return
+          }
       }
       return true
-    }
-    function caseInsensitive(string) {
-      return RegExp(string,'ig')
-    }
-    function urlProcessing(url) {
-      url = url.split(' ').join('')
-      if (url.indexOf('://') == -1) {
-        url = 'http://' + url
-      }
-      return encodeURIComponent(url)
-    }
-  })
-  
-  function simpleShortenSuccess(shortCode) {
-    shortCodeSave = shortCode
-    localStorage.setItem(id('inputForUrl').value, shortCodeSave);
-    var shortenedUrl = id('simpleShortenDomain').innerHTML + '/' + shortCodeSave
-    id('inputForKeyboard').value = shortenedUrl
-    id('inputForKeyboard').select()
-    document.execCommand("copy")
-    id('inputForKeyboard').blur()
-    elementFadeOut('alertFrame')
-    elementFadeIn('ResultFrame')
-    id('ResultText').innerHTML = shortenedUrl
   }
 
-  id('ResultTwitter').addEventListener('click',function(){
-    var twitterAllowed, twitterCheck
-    twitterAllowed = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890./:'
-    twitterCheck = id('ResultText').innerHTML
-    for (i in twitterAllowed){
-      twitterCheck = twitterCheck.replaceAll(twitterAllowed[i],'')
-    }
-    if (twitterCheck == ''){
-      twitterGenerate('%F0%9F%94%97 ' + id('ResultText').innerHTML)
-    }else{
+  function caseInsensitive(string) {
+      return RegExp(string, 'ig')
+  }
+
+  function urlProcessing(url) {
+      url = url.split(' ').join('')
+      if (url.indexOf('://') == -1) {
+          url = 'http://' + url
+      }
+      return encodeURIComponent(url)
+  }
+
+  function simpleShortenSuccess(shortCode) {
+      shortCodeSave = shortCode
+      localStorage.setItem(id('inputForUrl').value, shortCodeSave);
+      var shortenedUrl = id('simpleShortenDomain').innerHTML + '/' + shortCodeSave
+      id('inputForKeyboard').value = shortenedUrl
+      id('inputForKeyboard').select()
+      document.execCommand("copy")
+      id('inputForKeyboard').blur()
+      elementFadeOut('alertFrame')
+      elementFadeIn('ResultFrame')
+      id('ResultText').innerHTML = shortenedUrl
+  }
+
+  id('ResultTwitter').addEventListener('click', function() {
+      var twitterAllowed, twitterCheck
+      twitterAllowed = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890./:'
+      twitterCheck = id('ResultText').innerHTML
+      for (i in twitterAllowed) {
+          twitterCheck = twitterCheck.replaceAll(twitterAllowed[i], '')
+      }
+      if (twitterCheck == '') {
+          twitterGenerate('%F0%9F%94%97 ' + id('ResultText').innerHTML)
+      } else {
+          elementFadeOut('ResultFrame')
+          elementFadeIn('twitterFrame')
+      }
+  })
+  id('ResultRename').addEventListener('click', function() {
+      uniqueShortenSuccess(shortCodeSave)
+  })
+  id('ResultClose').addEventListener('click', function() {
       elementFadeOut('ResultFrame')
-      elementFadeIn('twitterFrame')
-    }
   })
-  id('ResultRename').addEventListener('click',function(){
-    uniqueShortenSuccess(shortCodeSave)
+  id('twitterNo').addEventListener('click', function() {
+      elementFadeOut('twitterFrame')
+      elementFadeIn('ResultFrame')
   })
-  id('ResultClose').addEventListener('click',function(){
-    elementFadeOut('ResultFrame')
+  id('twitterYes').addEventListener('click', function() {
+      twitterGenerate('%F0%9F%94%97 ' + id('ResultText').innerHTML + '%0A' + '%F0%9F%A5%88 SubURL.at/' + shortCodeSave)
+      elementFadeOut('twitterFrame')
+      elementFadeIn('ResultFrame')
+      customAlert('Loading Twitter...', 3000)
   })
-  id('twitterNo').addEventListener('click',function(){
-    elementFadeOut('twitterFrame')
-    elementFadeIn('ResultFrame')
-  })
-  id('twitterYes').addEventListener('click',function(){
-    twitterGenerate('%F0%9F%94%97 ' + id('ResultText').innerHTML + '%0A' + '%F0%9F%A5%88 SubURL.at/' + shortCodeSave)
-    elementFadeOut('twitterFrame')
-    elementFadeIn('ResultFrame')
-    customAlert('Loading Twitter...',3000)
-  })
-  function twitterGenerate(twt){
-    if(mobileCheck()){
-      appCheck('twitter://post?message=' + twt, 3000).then(function(result){
-        if(result == false){
+
+  function twitterGenerate(twt) {
+      if (mobileCheck()) {
+          appCheck('twitter://post?message=' + twt, 3000).then(function(result) {
+              if (result == false) {
+                  window.open('https://twitter.com/intent/tweet?text=' + twt)
+              }
+          })
+      } else {
           window.open('https://twitter.com/intent/tweet?text=' + twt)
-        }
-      })
-    }else{
-      window.open('https://twitter.com/intent/tweet?text=' + twt)
-    }
+      }
   }
-  
+
   function uniqueShortenSuccess(shortCode) {
-    shortCodeSave = shortCode
-    localStorage.setItem(id('inputForUrl').value, shortCode);
-    elementFadeOut('alertFrame')
-    elementFadeIn('customFrame')
+      shortCodeSave = shortCode
+      localStorage.setItem(id('inputForUrl').value, shortCode);
+      elementFadeOut('alertFrame')
+      elementFadeIn('customFrame')
   }
-  
-  id('customInput').addEventListener('input', function(){
-    resetCustomText()
+
+  id('customInput').addEventListener('input', function() {
+      resetCustomText()
   })
-  id('customSelect').addEventListener('change', function(){
-    resetCustomText()
+  id('customSelect').addEventListener('change', function() {
+      resetCustomText()
   })
-  function resetCustomText(){
-    id('customText').innerHTML = id('customInput').value + id('customSelect').value + '/' + shortCodeSave
+
+  function resetCustomText() {
+      id('customText').innerHTML = id('customInput').value + id('customSelect').value + '/' + shortCodeSave
   }
-  
-  
 </script>
     
   </body>
