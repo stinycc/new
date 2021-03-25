@@ -270,14 +270,10 @@
   function tipTextAnimation(){
       setTimeout(function(){
           elementFadeIn('tipTitle' + tipNumb, 1000)
-          setTimeout(function(){
-              elementFadeIn('tipContent' + tipNumb, 1000)
-          },500)
+          elementFadeIn('tipContent' + tipNumb, 1000)
       },2500)
       setTimeout(function(){
-          setTimeout(function(){
-              elementFadeOut('tipTitle' + tipNumb, 1000)
-          },500)
+          elementFadeOut('tipTitle' + tipNumb, 1000)
           elementFadeOut('tipContent' + tipNumb, 1000)
           if(tipNumb == 3){
               tipNumb = 1
