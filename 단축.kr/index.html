@@ -774,12 +774,12 @@
       id('customText').innerHTML = customTextValue
   }
   id('customGenerate').addEventListener('click', function() {
-      if(localStorage.getItem(id('customText').innerHTML) == 'success' || id('customInput').value == ''){
+      if(localStorage.getItem(id('customInput').value) == 'success' || id('customInput').value == ''){
           showResultframe(id('customText').innerHTML)
           return
       }
       iframeLoaded = 0
-      id('testIframe').src = '//' + id('customInput').value.replaceAll('.','') + '.sTiny.link' + '?save=' + id('customText').innerHTML + '?test=true'
+      id('testIframe').src = '//' + id('customInput').value.replaceAll('.','') + '.sTiny.link' + '?save=' + encodeURIComponent(id('customText').innerHTML) + '?test=true'
       testCount = 5
       customAlert('Testing the link... ' + testCount, 1200)
       TestingAlertAnimation()
@@ -822,8 +822,8 @@
   window.addEventListener('message',function(e){
     if(e.data=='success'){
       clearTimeout(TestingAlertTimer1)
-      testedLink = ((id('testIframe').src.split('?save='))[1].split('?test='))[0]
-      localStorage.setItem(testedLink, 'success');
+      testedLink = decodeURIComponent(((id('testIframe').src.split('?save='))[1].split('?test='))[0])
+      localStorage.setItem(testedLink.replaceAll(id('customSelect').value,''), 'success');
       showResultframe(testedLink)
     }
   })
