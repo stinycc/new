@@ -703,7 +703,7 @@
       if(id('customInput').value.charAt(id('customInput').value.length - 1) != '.'){
           id('customInput').blur
           id('customInput').value = id('customInput').value + '.'
-          setTimout(function(){
+          setTimeout(function(){
               id('customInput').focus
           },1)
       }
