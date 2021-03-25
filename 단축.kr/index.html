@@ -710,6 +710,11 @@
       }
       resetCustomText()
   })
+  id('customInput').addEventListener('keydown', function() {
+    if(id('customInput').selectionStart == id('customInput').value.length){
+      id('customInput').selectionStart = id('customInput').selectionEnd = id('customInput').value.length - 1
+    }
+  })
   id('customSelect').addEventListener('change', function() {
       resetCustomText()
   })
