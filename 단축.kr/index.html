@@ -743,7 +743,11 @@
   })
 
   function resetCustomText() {
-      id('customText').innerHTML = id('customInput').value + id('customSelect').value + '/' + shortCodeSave
+      customTextValue = (id('customInput').value + id('customSelect').value + '/' + shortCodeSave).replaceAll('..','.')
+      if(customTextValue.charAt(0) == '.'){
+          customTextValue = customTextValue.replace('.','')
+      }
+      id('customText').innerHTML = customTextValue
   }
 </script>
     
