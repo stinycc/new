@@ -823,7 +823,7 @@
     if(e.data=='success'){
       clearTimeout(TestingAlertTimer1)
       testedLink = decodeURIComponent(((id('testIframe').src.split('?save='))[1].split('?test='))[0])
-      localStorage.setItem(testedLink.replaceAll(id('customSelect').value,''), 'success');
+      localStorage.setItem((testedLink.split(id('customSelect').value))[0], 'success');
       showResultframe(testedLink)
     }
   })
