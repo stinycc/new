@@ -694,11 +694,23 @@
   }
   
   id('customInput').addEventListener('click', function() {
-    setTimeout(function(){
-      if(id('customInput').selectionStart == id('customInput').value.length){
-        id('customInput').selectionStart = id('customInput').selectionEnd = id('customInput').value.length - 1
+      if(id('customInput').value == ''){
+        id('customInput').value = '.'
       }
-    },1)
+      setTimeout(function(){
+        if(id('customInput').selectionStart == id('customInput').value.length){
+          id('customInput').selectionStart = id('customInput').selectionEnd = id('customInput').value.length - 1
+        }
+      },1)
+  })
+  id('customInput').addEventListener('focus', function() {
+      id('customInput').style.textAlign = 'right'
+  })
+  id('customInput').addEventListener('blur', function() {
+      id('customInput').value = (id('customText').innerHTML.split(id('customSelect').value + '/'))[0]
+      if(id('customInput').value == ''){
+        id('customInput').style.textAlign = 'center'
+      }
   })
   id('customInput').addEventListener('input', function() {
       var unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', ':', '/', '`', "'", ' ', '（', '）', '⁽', '⁾', '₍', '₎', '˙', '｡', '＼']
