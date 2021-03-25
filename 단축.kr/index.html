@@ -616,7 +616,7 @@
           urlHostname = (protocolRemoved.split('.'))[0]
       }
       //valid characters?
-      var unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', '`', "'", ' ', ' ', ':', '/']
+      var unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', '`', "'", ' ', ':', '/']
       for (var i = 0; i < unvalidCharacter.length; i++) {
           if (urlHostname.indexOf(unvalidCharacter[i]) != -1) {
               customAlert('Wrong url format', 2000)
@@ -730,7 +730,7 @@
   })
   id('customInput').addEventListener('input', function() {
       var unvalidCharacter, initialValue, charLocation
-      unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', ':', '/', '`', "'", ' ', '（', '）', '⁽', '⁾', '₍', '₎', '˙', '｡', '＼']
+      unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', ':', '/', '`', "'", '（', '）', '⁽', '⁾', '₍', '₎', '˙', '｡', '＼', decodeURI('%C2%A0')]
       initialValue = id('customInput').value
       id('customInput').value = id('customInput').value.replaceAll(' ','.')
       for (i in unvalidCharacter){
