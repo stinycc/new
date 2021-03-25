@@ -774,8 +774,8 @@
       id('customText').innerHTML = customTextValue
   }
   id('customSelect').addEventListener('click', function() {
-      if(localStorage.getItem(id('customText').innerHTML) == 'success' || ){
-        
+      if(localStorage.getItem(id('customText').innerHTML) == 'success' || id('customInput').value == ''){
+          showResultframe(id('customText').innerHTML)
       }
       iframeLoaded = 0
       id('testIframe').src = '//' + id('customText').innerHTML + '?test=true'
