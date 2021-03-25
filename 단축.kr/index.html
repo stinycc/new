@@ -645,14 +645,7 @@
   function simpleShortenSuccess(shortCode) {
       shortCodeSave = shortCode
       localStorage.setItem(id('inputForUrl').value, shortCodeSave);
-      var shortenedUrl = id('simpleShortenDomain').innerHTML + '/' + shortCodeSave
-      id('inputForKeyboard').value = shortenedUrl
-      id('inputForKeyboard').select()
-      document.execCommand("copy")
-      id('inputForKeyboard').blur()
-      elementFadeOut('alertFrame')
-      elementFadeIn('resultFrame')
-      id('ResultText').innerHTML = shortenedUrl
+      showResultframe(id('simpleShortenDomain').innerHTML + '/' + shortCodeSave)
   }
 
   id('ResultTwitter').addEventListener('click', function() {
@@ -781,6 +774,9 @@
       id('customText').innerHTML = customTextValue
   }
   id('customSelect').addEventListener('click', function() {
+      if(localStorage.getItem(id('customText').innerHTML) == 'success' || ){
+        
+      }
       iframeLoaded = 0
       id('testIframe').src = '//' + id('customText').innerHTML + '?test=true'
       testCount = 5
@@ -827,15 +823,18 @@
       clearTimeout(TestingAlertTimer1)
       testedLink = (id('testIframe').src.splice(-1,10).split('//'))[1]
       localStorage.setItem(testedLink, 'success');
-      id('inputForKeyboard').value = testedLink
+      showResultframe(testedLink)
+    }
+  })
+  function showResultframe(resultLink){
+      id('inputForKeyboard').value = resultLink
       id('inputForKeyboard').select()
       document.execCommand("copy")
       id('inputForKeyboard').blur()
       elementFadeOut('alertFrame')
       elementFadeIn('resultFrame')
-      id('ResultText').innerHTML = testedLink
-    }
-  })
+      id('ResultText').innerHTML = resultLink
+  }
 </script>
     
   </body>
