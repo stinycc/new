@@ -836,7 +836,6 @@
     }
   })
   function showResultframe(resultLink){
-      customAlert('The link is copied to clipboard!')
       id('inputForKeyboard').value = resultLink
       id('inputForKeyboard').select()
       document.execCommand("copy")
@@ -844,6 +843,7 @@
       elementFadeOut('alertFrame')
       elementFadeOut('customFrame')
       elementFadeIn('resultFrame')
+      customAlert('The link is copied to clipboard!', 2000)
       id('ResultText').innerHTML = resultLink
   }
 </script>
