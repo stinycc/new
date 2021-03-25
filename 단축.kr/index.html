@@ -502,9 +502,7 @@
               simpleShortenSuccess(urlIfShortenedResult)
           } else if (urlCheckifValid(id('inputForUrl').value)) {
               customAlert('Loading...')
-              alert(urlProcessing(id('inputForUrl').value))
-              try{getJSONP('https://apiserver.wixsite.com/litn/_functions/eedo/setURL?longLink=' + urlProcessing(id('inputForUrl').value) + '&func=simpleShortenSuccess')}
-              catch (err){alert(err)}
+              getJSONP('https://apiserver.wixsite.com/litn/_functions/eedo/setURL?longLink=' + urlProcessing(id('inputForUrl').value) + '&func=simpleShortenSuccess')
           }
       } else {
           customAlert('Please enter a link first', 2000)
