@@ -781,13 +781,13 @@
       iframeLoaded = 0
       id('testIframe').src = '//' + id('customText').innerHTML.replaceAll('.','') + '.sTiny.link' + '?save=' + id('customText').innerHTML + '?test=true'
       testCount = 5
-      customAlert('Testing the link...' + testCount, 1200)
+      customAlert('Testing the link... ' + testCount, 1200)
       TestingAlertAnimation()
       function TestingAlertAnimation(){
         TestingAlertTimer1 = setTimeout(function(){
           if(testCount > 0){
             testCount -= 1
-            customAlert('Testing the link...' + testCount, 1200)
+            customAlert('Testing the link... ' + testCount, 1200)
             TestingAlertAnimation()
           }else{
             if(iframeLoaded = 1){
