@@ -504,9 +504,6 @@
       }, 100)
 
       id('inputForKeyboard').focus()
-      setTimeout(function() {
-          id('inputForPlaceholder').focus()
-      }, 2000)
       if (id('inputForUrl').value) {
           urlIfShortenedResult = urlCheckIfShortened(id('inputForUrl').value)
           if (urlIfShortenedResult) {
@@ -517,6 +514,9 @@
           }
       } else {
           customAlert('Please enter a link first', 2000)
+          setTimeout(function() {
+              id('inputForPlaceholder').focus()
+          }, 2000)
       }
   })
 
