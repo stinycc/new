@@ -781,13 +781,13 @@
       iframeLoaded = 0
       id('testIframe').src = '//' + id('customText').innerHTML + '?test=true'
       testCount = 5
-      customAlert(Testing the link + testCount, 1200)
+      customAlert('Testing the link...' + testCount, 1200)
       TestingAlertAnimation()
       function TestingAlertAnimation(){
         TestingAlertTimer1 = setTimeout(function(){
           if(othersCount > 0){
             othersCount -= 1
-            customAlert(Testing the link + testCount, 1200)
+            customAlert('Testing the link...' + testCount, 1200)
             othersTextAnimation()
           }else{
             if(iframeLoaded = 1){
