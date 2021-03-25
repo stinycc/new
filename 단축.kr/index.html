@@ -701,10 +701,10 @@
           id('customInput').value = id('customInput').value.replaceAll(unvalidCharacter[i],'')
       }
       if(id('customInput').value.charAt(id('customInput').value.length - 1) != '.'){
-          id('customInput').blur
+          id('customInput').blur()
           id('customInput').value = id('customInput').value + '.'
           setTimeout(function(){
-              id('customInput').focus
+              id('customInput').focus()
           },1)
       }
       resetCustomText()
