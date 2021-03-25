@@ -716,8 +716,8 @@
       resetCustomText()
   })
   id('customInput').addEventListener('keydown', function() {
-    alert('move!')
     if(id('customInput').selectionStart == id('customInput').value.length){
+      alert('move!')
       id('customInput').selectionStart = id('customInput').selectionEnd = id('customInput').value.length - 1
     }
   })
