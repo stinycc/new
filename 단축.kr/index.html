@@ -769,7 +769,11 @@
   })
 
   function resetCustomText() {
-      customTextValue = (id('customInput').value + id('customSelect').value + '/' + shortCodeSave).replaceAll('..','.')
+      if(id('customInput').value.charAt(id('customInput').value.length - 1) == '.'){
+          customTextValue = (id('customInput').value + id('customSelect').value + '/' + shortCodeSave).replaceAll('..','.')
+      }else{
+          customTextValue = (id('customInput').value + '.' + id('customSelect').value + '/' + shortCodeSave).replaceAll('..','.')
+      }
       if(customTextValue.charAt(0) == '.'){
           customTextValue = customTextValue.replace('.','')
       }
