@@ -574,7 +574,7 @@
           return localStorage.getItem(id('inputForUrl').value)
       } else {
           for (i in domainList) {
-              if (protocolRemoved.toLowerCase().indexOf(domainList[i].toLowerCase()) == 0 && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '' && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '/') {
+              if ((protocolRemoved.split('/'))[0].toLowerCase().indexOf(domainList[i].toLowerCase()) != -1 && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '' && (protocolRemoved.split(caseInsensitive(domainList[i])))[1] != '/') {
                   return (protocolRemoved.split(caseInsensitive(domainList[i] + '/')))[1]
               }
           }
@@ -844,8 +844,8 @@
       elementFadeOut('customFrame')
       elementFadeIn('resultFrame')
       setTimeout(function(){
-          customAlert('The link is copied to clipboard!', 2200)
-      },300)
+          customAlert('The link is copied to clipboard!', 2250)
+      },250)
       id('ResultText').innerHTML = resultLink
   }
 </script>
