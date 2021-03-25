@@ -713,10 +713,18 @@
       }
   })
   id('customInput').addEventListener('input', function() {
-      var unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', ':', '/', '`', "'", ' ', '（', '）', '⁽', '⁾', '₍', '₎', '˙', '｡', '＼']
+      var unvalidCharacter, initialValue, charLocation
+      unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', ':', '/', '`', "'", ' ', '（', '）', '⁽', '⁾', '₍', '₎', '˙', '｡', '＼']
+      initialValue = id('customInput').value
       id('customInput').value = id('customInput').value.replaceAll(' ','.')
       for (i in unvalidCharacter){
           id('customInput').value = id('customInput').value.replaceAll(unvalidCharacter[i],'')
+      }
+      charLocation = id('customInput').value.length
+      while(id('customInput').value.charAt(charLocation-1) == initialValue.charAt(initialValue.length-1)){
+        id('customInput').selectionStart = id('customInput').selectionEnd = charLocation
+        charLocation -= 1
+        initialValue = initialValue.slice(0,-1)
       }
       if(id('customInput').selectionStart == id('customInput').value.length){
           id('customInput').value = id('customInput').value + '.'
