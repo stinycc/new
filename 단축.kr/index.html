@@ -702,8 +702,6 @@
   })
   id('customInput').addEventListener('input', function() {
       var unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', ':', '/', '`', "'", ' ', '（', '）', '⁽', '⁾', '₍', '₎', '˙', '｡', '＼']
-      id('customInput').value = id('customInput').value.replaceAll(' ','.')
-      id('customInput').value = id('customInput').value.replaceAll('..','.')
       for (i in unvalidCharacter){
           id('customInput').value = id('customInput').value.replaceAll(unvalidCharacter[i],'')
       }
@@ -711,6 +709,8 @@
         id('customInput').value = id('customInput').value + '.'
         id('customInput').selectionStart = id('customInput').selectionEnd = id('customInput').value.length - 1
       }
+      id('customInput').value = id('customInput').value.replaceAll(' ','.')
+      id('customInput').value = id('customInput').value.replaceAll('...','..')
       resetCustomText()
   })
   id('customInput').addEventListener('keydown', function() {
