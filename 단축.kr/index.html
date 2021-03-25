@@ -785,8 +785,8 @@
       TestingAlertAnimation()
       function TestingAlertAnimation(){
         TestingAlertTimer1 = setTimeout(function(){
-          if(othersCount > 0){
-            othersCount -= 1
+          if(testCount > 0){
+            testCount -= 1
             customAlert('Testing the link...' + testCount, 1200)
             othersTextAnimation()
           }else{
