@@ -59,6 +59,24 @@
     </div>
   </div>
 </div>
+<div id='customFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
+  <div R='width:w(90); height:w(45); max-width:500px; max-height:250px; border-radius:s(2.5);' style='background:white;'>
+    <div R='width:w(90); height:h(100*1.5/5); font-size:w(3);'>
+      You can use&#160;<b>alphabet</b>&#160;(A),&#160;<b>numbers</b>&#160;(3),&#160;<b>emojis</b>&#160;(😝),<br/>
+      <b>non-English alphabets</b>&#160;(漢), and&#160;<b>special characters</b>&#160;(☆)
+    </div>
+    <div R='height:h(100/5)'>
+      <input id='customInput' type='text' placeholder='Custom domain (Optional)' autocomplete='off' R='width:w(72.5 - 5px); height:h(85); padding:0 5px 0 0; border-radius:h(20); font-size:w(2.8);' style='background:whitesmoke; border:none; box-shadow:inset 2px 2px 4px rgba(0,0,0,0.4); text-align:center;'>
+      <select id='customSelect' R='width:w(20 - 5px); height:h(85); background:whitesmoke; margin:0 0 0 5px; border-radius:h(20); font-size:w(2.8);'></select>
+    </div>
+    <div id='customText' R='height:h(100/5); font-size:w(3);' style='text-align:center;'></div>
+    <div class='topCenterAlign' R='height:h(100/5)'>
+      <div id='customGenerate' class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(0,0,0,.7); color:white;'>
+        <b R='font-size:w(4);'>Test ＆ Generate</b>
+      </div>
+    </div>
+  </div>
+</div>
 <div id='resultFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
   <div class='topCenterAlign' R='width:w(90); height:w(9); max-width:400px; max-height:40px;'>
     <b id='ResultText' R='font-size:w(4.5);'></b>
@@ -82,24 +100,6 @@
         <div class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(0,0,0,.7);'>
           <b R='font-size:w(4);'>Close</b>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div id='customFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
-  <div R='width:w(90); height:w(45); max-width:500px; max-height:250px; border-radius:s(2.5);' style='background:white;'>
-    <div R='width:w(90); height:h(100*1.5/5); font-size:w(3);'>
-      You can use&#160;<b>alphabet</b>&#160;(A),&#160;<b>numbers</b>&#160;(3),&#160;<b>emojis</b>&#160;(😝),<br/>
-      <b>non-English alphabets</b>&#160;(漢), and&#160;<b>special characters</b>&#160;(☆)
-    </div>
-    <div R='height:h(100/5)'>
-      <input id='customInput' type='text' placeholder='Custom domain (Optional)' autocomplete='off' R='width:w(72.5 - 5px); height:h(85); padding:0 5px 0 0; border-radius:h(20); font-size:w(2.8);' style='background:whitesmoke; border:none; box-shadow:inset 2px 2px 4px rgba(0,0,0,0.4); text-align:center;'>
-      <select id='customSelect' R='width:w(20 - 5px); height:h(85); background:whitesmoke; margin:0 0 0 5px; border-radius:h(20); font-size:w(2.8);'></select>
-    </div>
-    <div id='customText' R='height:h(100/5); font-size:w(3);' style='text-align:center;'></div>
-    <div class='topCenterAlign' R='height:h(100/5)'>
-      <div id='customGenerate' class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(0,0,0,.7); color:white;'>
-        <b R='font-size:w(4);'>Test ＆ Generate</b>
       </div>
     </div>
   </div>
