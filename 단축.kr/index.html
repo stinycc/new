@@ -693,13 +693,6 @@
       resetCustomText()
   }
   
-  id('sTinyLinkInput').addEventListener("input", function() {
-    id('sTinyLinkInput').value = id('sTinyLinkInput').value.replaceAll(' ','.')
-    id('sTinyLinkInput').value = id('sTinyLinkInput').value.replaceAll('..','.')
-    for (i in unvalidCharacter){
-      id('sTinyLinkInput').value = id('sTinyLinkInput').value.replaceAll(unvalidCharacter[i],'')
-    }
-  })
   id('customInput').addEventListener('input', function() {
       var unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', ':', '/', '`', "'", ' ', '（', '）', '⁽', '⁾', '₍', '₎', '˙', '｡', '＼']
       id('customInput').value = id('customInput').value.replaceAll(' ','.')
