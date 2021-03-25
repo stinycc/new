@@ -194,12 +194,10 @@ function cancelFadeOut(elementId){
 }
 
 function customAlert(message, time) {
+    try {clearTimeout(customAlertTimeout)} catch {}
     if (id('alertFrame').style.display == 'none') {
         elementFadeIn('alertFrame')
     } else {
-        try {
-            clearTimeout(customAlertTimeout)
-        } catch {}
         cancelFadeOut('alertFrame')
     }
     id('alertText').innerHTML = message
