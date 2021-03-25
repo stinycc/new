@@ -693,6 +693,11 @@
       resetCustomText()
   }
   
+  id('customInput').addEventListener('focus', function() {
+    if(id('customInput').selectionStart == id('customInput').value.length){
+      id('customInput').selectionStart = id('customInput').selectionEnd = id('customInput').value.length - 1
+    }
+  })
   id('customInput').addEventListener('input', function() {
       var unvalidCharacter = ['+', '=', '<', '>', '＆', '&', '^', '%', '!', '~', '＊', '*', '(', ')', '"', ';', ',', '{', '}', '[', ']', '$', '＃', '#', '＠', '@', '?', '|', ':', '/', '`', "'", ' ', '（', '）', '⁽', '⁾', '₍', '₎', '˙', '｡', '＼']
       id('customInput').value = id('customInput').value.replaceAll(' ','.')
