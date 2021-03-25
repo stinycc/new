@@ -724,10 +724,10 @@
       while(charLocation != -1){
         if(id('customInput').value.charAt(charLocation-1) != initialValue.charAt(initialValue.length-1)){
           id('customInput').selectionStart = id('customInput').selectionEnd = charLocation
-          return
+        }else{
+          charLocation -= 1
+          initialValue = initialValue.slice(0,-1)
         }
-        charLocation -= 1
-        initialValue = initialValue.slice(0,-1)
       }
       if(id('customInput').selectionStart == id('customInput').value.length){
           id('customInput').value = id('customInput').value + '.'
