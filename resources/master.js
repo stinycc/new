@@ -207,11 +207,7 @@ function customAlert(message, time) {
             clearTimeout(customAlertTimeout)
         } catch {}
         cancelFadeOut('alertFrame')
-        if (time) {
-            customAlertTimeout = setTimeout(function() {
-                elementFadeOut('alertFrame')
-            }, time)
-        }
+        customAlert(message, time)
     }
 }
 
