@@ -14,6 +14,7 @@
 <link href='/resources/master.css' rel='stylesheet' type='text/css'>
 <script src='/resources/master.js'></script>
 <div style='display:block; position:absolute; background:#202020; color:white; overflow-X:hidden; overflow-Y:auto;'>
+  <iframe id='testIframe' style='display:none; position:absolute; z-index:-5;'></iframe>
   <video id='loadVideo' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
   <video id='backgroundVideo1' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
   <video id='backgroundVideo2' muted='' class='full' R='min-height:500px;' style='display:none; position:absolute; object-fit: cover;'></video>
@@ -779,6 +780,62 @@
       }
       id('customText').innerHTML = customTextValue
   }
+  id('customSelect').addEventListener('click', function() {
+      iframeLoaded = 0
+      id('testIframe').src = '//' + id('customText').innerHTML + '?test=true'
+      testCount = 5
+      customAlert(Testing the link + testCount, 1200)
+      TestingAlertAnimation()
+      function TestingAlertAnimation(){
+        TestingAlertTimer1 = setTimeout(function(){
+          if(othersCount > 0){
+            othersCount -= 1
+            customAlert(Testing the link + testCount, 1200)
+            othersTextAnimation()
+          }else{
+            if(iframeLoaded = 1){
+              alert('Link test failed. Your link contains unusable character(s).')
+              iframeLoaded = 0
+            }else{
+              alert('Link test failed. Your link contains unusable character(s) or your internet connection is too slow. In case of slow connection please wait, because you might get the result later on.')
+              iframeLoaded = -1
+            }
+            arabicCharacter = /[\u0600-\u06FF]/;
+            if(arabicCharacter.test(testLinkSave) || testLinkSave.indexOf('ﻌ') != -1){
+              alert('Arabic alphabet detected! Arabic alphabets are not allowed to be used with most of the non-arabic characters.')
+            }
+            if(testLinkSave.length > 50){
+              alert('The link is at least 50 characters long. It could be the cause of the error.')
+            }
+          }
+        },1000)
+      }
+  }
+  id('testIframe').addEventListener('load',function(){
+    if(iframeLoaded == 0){
+      iframeLoaded = 1
+    }else{
+      setTimeout(function(){
+        alert('Link created: ' + testedLink + ' (Sorry for the delay. The link you generated earlier has finally passed the test!. Click the buttons at the bottom of the page to copy the link)')
+        iframeLoaded = 0
+      },500)
+    }
+  })
+  
+  window.addEventListener('message',function(e){
+    if(e.data=='success'){
+      clearTimeout(TestingAlertTimer1)
+      testedLink = (id('testIframe').src.splice(-1,10).split('//'))[1]
+      localStorage.setItem(testedLink, 'success');
+      id('inputForKeyboard').value = testedLink
+      id('inputForKeyboard').select()
+      document.execCommand("copy")
+      id('inputForKeyboard').blur()
+      elementFadeOut('alertFrame')
+      elementFadeIn('resultFrame')
+      id('ResultText').innerHTML = testedLink
+    }
+  })
 </script>
     
   </body>
