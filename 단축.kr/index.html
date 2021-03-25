@@ -383,13 +383,13 @@
   window.addEventListener('keydown', function() {
       if (event.keyCode == 13) {
           if(id('customFrame').style.display == 'flex'){
-              if(id('customFrame').style.opacity > 0.75){
+              if(id('customFrame').offset('opacity') > 0.75){
                   id('customInput').focus()
               }
           }else if(id('resultFrame').style.display == 'flex'){
               //nothing
           }else if(id('twitterFrame').style.display == 'flex'){
-              if(id('customFrame').style.opacity > 0.75){
+              if(id('customFrame').offset('opacity') > 0.75){
                   id('twitterYes').click()
               }
           }else{
