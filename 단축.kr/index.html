@@ -151,6 +151,7 @@
   }
   videoLaunched = false
   loadedSrc = ''
+  pathname = decodeURIComponent(location.pathname.replaceAll('/', ''))
 
   window.addEventListener('touchstart', function() {
       id('simpleShortenButton').className = 'noDrag'
@@ -251,7 +252,6 @@
       }
   }
 
-  pathname = decodeURIComponent(location.pathname.replaceAll('/', ''))
   if (getParameter('from')) {
       id('titleSubLevel').innerHTML = getParameter('from')
       id('simpleShortenDomain').innerHTML = 'sTiny.link'
@@ -687,8 +687,10 @@
       elementFadeOut('alertFrame')
       elementFadeIn('customFrame')
       if (getParameter('from')) {
-          
+          id('customInput').value = getParameter('from')
+          id('customSelect').value = pathname
       }
+      resetCustomText()
   }
 
   id('customInput').addEventListener('input', function() {
