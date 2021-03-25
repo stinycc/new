@@ -774,6 +774,12 @@
       }
       id('customText').innerHTML = customTextValue
   }
+  id('customInput').addEventListener('keydown', function() {
+      if (event.keyCode == 13) {
+          id('customGenerate').click()
+      }
+  })
+        
   id('customGenerate').addEventListener('click', function() {
       if(localStorage.getItem(id('customInput').value) == 'success' || id('customInput').value == ''){
           showResultframe(id('customText').innerHTML)
