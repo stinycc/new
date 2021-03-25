@@ -58,7 +58,7 @@
     </div>
   </div>
 </div>
-<div id='ResultFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
+<div id='resultFrame' class='vertical' style='display:none; position:absolute; z-index:999999999; background:rgba(0,0,0,0.25); color:white; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);'>
   <div class='topCenterAlign' R='width:w(90); height:w(9); max-width:400px; max-height:40px;'>
     <b id='ResultText' R='font-size:w(4.5);'></b>
   </div>
@@ -97,7 +97,7 @@
     </div>
     <div id='customText' R='height:h(100/5); font-size:w(3);' style='text-align:center;'></div>
     <div class='topCenterAlign' R='height:h(100/5)'>
-      <div class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(0,0,0,.7); color:white;'>
+      <div id='customGenerate' class='button' R='width:w(92.5); height:h(90); border-radius:s(20);' style='background:rgba(0,0,0,.7); color:white;'>
         <b R='font-size:w(4);'>Test ＆ Generate</b>
       </div>
     </div>
@@ -382,7 +382,15 @@
 
   window.addEventListener('keydown', function() {
       if (event.keyCode == 13) {
-          id('inputForPlaceholder').focus()
+          if(id('customFrame').style.display == 'flex'){
+              id('customGenerate').click()
+          }else if(id('resultFrame').style.display == 'flex'){
+              //nothing
+          }else if(id('twitterFrame').style.display == 'flex'){
+              id('twitterYes').click()
+          }else{
+              id('inputForPlaceholder').focus()
+          }
       }
   })
   id('inputForPlaceholder').addEventListener('focus', function() {
@@ -634,7 +642,7 @@
       document.execCommand("copy")
       id('inputForKeyboard').blur()
       elementFadeOut('alertFrame')
-      elementFadeIn('ResultFrame')
+      elementFadeIn('resultFrame')
       id('ResultText').innerHTML = shortenedUrl
   }
 
@@ -648,7 +656,7 @@
       if (twitterCheck == '') {
           twitterGenerate('%F0%9F%94%97 ' + id('ResultText').innerHTML)
       } else {
-          elementFadeOut('ResultFrame')
+          elementFadeOut('resultFrame')
           elementFadeIn('twitterFrame')
       }
   })
@@ -656,16 +664,16 @@
       uniqueShortenSuccess(shortCodeSave)
   })
   id('ResultClose').addEventListener('click', function() {
-      elementFadeOut('ResultFrame')
+      elementFadeOut('resultFrame')
   })
   id('twitterNo').addEventListener('click', function() {
       elementFadeOut('twitterFrame')
-      elementFadeIn('ResultFrame')
+      elementFadeIn('resultFrame')
   })
   id('twitterYes').addEventListener('click', function() {
       twitterGenerate('%F0%9F%94%97 ' + id('ResultText').innerHTML + '%0A' + '%F0%9F%A5%88 SubURL.at/' + shortCodeSave)
       elementFadeOut('twitterFrame')
-      elementFadeIn('ResultFrame')
+      elementFadeIn('resultFrame')
       customAlert('Loading Twitter...', 3000)
   })
 
