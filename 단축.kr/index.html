@@ -657,14 +657,14 @@ document.head.innerHTML+=expandAnimation
     elementFadeIn('customFrame')
   }
   
-  id('customInput').addEventListener('change', function(){
+  id('customInput').addEventListener('input', function(){
     resetCustomText()
   })
   id('customSelect').addEventListener('change', function(){
     resetCustomText()
   })
   function resetCustomText(){
-    id('customText').innerHTML = id('customInput') + id('customSelect') + '/' + shortCodeSave
+    id('customText').innerHTML = id('customInput').value + id('customSelect').value + '/' + shortCodeSave
   }
   
   
