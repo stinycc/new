@@ -196,23 +196,17 @@ function cancelFadeOut(elementId){
 function customAlert(message, time) {
     if (id('alertFrame').style.display == 'none') {
         elementFadeIn('alertFrame')
-        id('alertText').innerHTML = message
-        if (time) {
-            customAlertTimeout = setTimeout(function() {
-                elementFadeOut('alertFrame')
-            }, time)
-        }
     } else {
         try {
             clearTimeout(customAlertTimeout)
         } catch {}
         cancelFadeOut('alertFrame')
-        id('alertText').innerHTML = message
-        if (time) {
-            customAlertTimeout = setTimeout(function() {
-                elementFadeOut('alertFrame')
-            }, time)
-        }
+    }
+    id('alertText').innerHTML = message
+    if (time) {
+        customAlertTimeout = setTimeout(function() {
+            elementFadeOut('alertFrame')
+        }, time)
     }
 }
 
