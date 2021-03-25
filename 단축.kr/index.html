@@ -779,7 +779,7 @@
           return
       }
       iframeLoaded = 0
-      id('testIframe').src = '//' + id('customText').innerHTML + '?test=true'
+      id('testIframe').src = '//' + id('customText').innerHTML.replaceAll('.','') + '.sTiny.link' + '?save=' + id('customText').innerHTML + '?test=true'
       testCount = 5
       customAlert('Testing the link...' + testCount, 1200)
       TestingAlertAnimation()
@@ -822,7 +822,7 @@
   window.addEventListener('message',function(e){
     if(e.data=='success'){
       clearTimeout(TestingAlertTimer1)
-      testedLink = (id('testIframe').src.slice(0,-10).split('//'))[1]
+      testedLink = ((id('testIframe').src.split('?save='))[1].split('?test='))[0]
       localStorage.setItem(testedLink, 'success');
       showResultframe(testedLink)
     }
