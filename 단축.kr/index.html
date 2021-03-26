@@ -176,9 +176,9 @@
       resizeResponsiveElements()
       resizeVideo()
   })
-  window.addEventListener('focus', function() {
+  setTimeout(function() {
       resizeResponsiveElements()
-  })
+  },1000)
 
   function resizeVideo() {
       var vidHeight
