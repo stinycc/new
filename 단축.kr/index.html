@@ -176,6 +176,10 @@
       resizeResponsiveElements()
       resizeVideo()
   })
+  window.addEventListener('resize', function() {
+      resizeResponsiveElements()
+      alert('d')
+  })
 
   function resizeVideo() {
       var vidHeight
