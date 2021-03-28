@@ -617,8 +617,7 @@
   }
 
   function urlCheckifValid(url) {
-      var urlHostname
-      var protocolRemoved
+      var urlHostname, protocolRemoved
       if (url.indexOf('://') != -1) {
           protocolRemoved = (url.split('://'))[1]
       } else {
