@@ -558,10 +558,10 @@
       if (id('inputForUrl').value) {
           urlIfShortenedResult = urlCheckIfShortened(id('inputForUrl').value)
           if (urlIfShortenedResult) {
-              uniqueShortenSuccess(urlIfShortenedResult)
+              customShortenSuccess(urlIfShortenedResult)
           } else if (urlCheckifValid(id('inputForUrl').value)) {
               customAlert('Loading...')
-              getJSONP('https://apiserver.wixsite.com/litn/_functions/eedo/setURL?longLink=' + urlProcessing(id('inputForUrl').value) + '&func=uniqueShortenSuccess')
+              getJSONP('https://apiserver.wixsite.com/litn/_functions/eedo/setURL?longLink=' + urlProcessing(id('inputForUrl').value) + '&func=customShortenSuccess')
           }
       } else {
           customAlert('Please enter a link first', 2000)
@@ -698,7 +698,7 @@
   })
   id('ResultRename').addEventListener('click', function() {
       elementFadeOut('resultFrame')
-      uniqueShortenSuccess(shortCodeSave)
+      customShortenSuccess(shortCodeSave)
   })
   id('ResultClose').addEventListener('click', function() {
       elementFadeOut('resultFrame')
@@ -726,7 +726,7 @@
       }
   }
 
-  function uniqueShortenSuccess(shortCode) {
+  function customShortenSuccess(shortCode) {
       id('inputForKeyboard').blur()
       shortCodeSave = shortCode
       localStorage.setItem(id('inputForUrl').value, shortCode);
