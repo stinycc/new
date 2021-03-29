@@ -31,7 +31,23 @@ function setTranslations(){
     }
 }
 
-function importHTML(frameId,htmlSource) {
+function httpRequest(httpUrl) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                return JSON.parse(this.responseText);
+            }
+            if (this.status == 404) {
+                return 'fail'
+            }
+        }
+    };
+    xhr.open("GET", httpUrl, true);
+    xhr.send();
+}
+
+function importHTML(frameId,htmlUrl) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4) {
@@ -44,9 +60,8 @@ function importHTML(frameId,htmlSource) {
             }
         }
     };
-    xhr.open("GET", htmlSource, true);
+    xhr.open("GET", htmlUrl, true);
     xhr.send();
-    return;
 }
 
 function importJS(scriptSource) {
