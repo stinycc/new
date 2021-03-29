@@ -32,8 +32,8 @@ function setTranslations(){
 }
 
 function httpRequest(httpUrl) {
-    var xhr = new XMLHttpRequest();
     return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (this.readyState == 4) {
                 if (this.status == 200) {
@@ -43,9 +43,9 @@ function httpRequest(httpUrl) {
                 }
             }
         }
+        xhr.open("GET", httpUrl, true);
+        xhr.send();
     })
-    xhr.open("GET", httpUrl, true);
-    xhr.send();
 }
 
 function importHTML(frameId,htmlUrl) {
