@@ -33,16 +33,17 @@ function setTranslations(){
 
 function httpRequest(httpUrl) {
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                return JSON.parse(this.responseText);
-            }
-            if (this.status == 404) {
-                return 'fail'
+    return new Promise(function(resolve, reject) {
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    resolve(JSON.parse(this.responseText))
+                }else if (this.status == 404) {
+                    resolve('fail')
+                }
             }
         }
-    };
+    })
     xhr.open("GET", httpUrl, true);
     xhr.send();
 }
