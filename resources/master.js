@@ -138,7 +138,7 @@ opacityFadeIn = []
 cancelList = []
 function elementFadeIn(elementId, time, state) {
     if(time == 'reset'){
-        time = 0
+        time = 500
         state = 'reset'
     }
     if(opacityFadeIn.indexOf(elementId) == -1){
@@ -163,7 +163,7 @@ function elementFadeIn(elementId, time, state) {
 
 function elementFadeOut(elementId, time, state) {
     if(time == 'reset'){
-        time = 0
+        time = 500
         state = 'reset'
     }
     if(state == 'reset'){
